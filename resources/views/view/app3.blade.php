@@ -12,14 +12,31 @@
 </head>
 <body>
   <div id="app">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="brand-logo">
-            </div>
+    <div class="container">
+      <div class="row col-lg-12">
+        <p></p>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="brand-logo">
+          </div>
+        </div>
+        <div class="col-lg-8 text-right clearfix">
+          <div id="link" style="padding-top:45px">
+            <a href="#">首頁</a>
+            |
+            <a href="#">網路地圖</a>
+            |
+            <a href="#">English</a>
+            |
+            <a href="#">雲科大首頁</a>
+            |
+            <a href="#">師培中心</a>
+            |
           </div>
         </div>
       </div>
+    </div>
       @include('common._navbar')
 			@include('common._navwrapper')
 		<div class="container">
