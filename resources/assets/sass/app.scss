@@ -1,0 +1,48 @@
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import url(https://fonts.googleapis.com/css?family=Ubuntu|Montserrat);
+
+body{
+font-family: 'Montserrat', sans-serif;
+transition-duration: 0.4s;
+}
+.ajax_modal{
+	color: #000;
+}
+.ajax_modal:hover{
+	color: #000;
+}
+
+.postEntry:hover{
+	background-color: #cdcdcd;
+}
+.postEntry{
+    border-bottom: 1px solid #FEE ;
+    padding: 5px;
+}
+.tcrow{
+	font-size: 18px;
+	border-bottom: 1px solid #FEE ;
+}
+.advideo{
+	height: 196.875px !important;
+}
+.brand-logo{
+	background-image: url('http://i.imgur.com/5JTchb2.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: 70px;
+	width: auto;
+}
+.smhr{
+	border-top: 5px solid #d7d7d7;
+	margin-top: 0px;
+	width: 90%;
+}
+.hr-left{
+	text-align: left;
+	margin-left: 0;
+}
+.hr-right{
+	text-align: right;
+	margin-right: 0;
+}
