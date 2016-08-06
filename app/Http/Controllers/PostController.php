@@ -13,6 +13,7 @@ use App\Filter;
 
 use App\User;
 use App\Postfiles;
+use File;
 use Auth;
 
 class PostController extends Controller
@@ -62,8 +63,8 @@ class PostController extends Controller
                 $messages = $v->messages();
             }else{
                 $po = Post::create(['title' => $request->title, 'content' => $request->content, 'filter' => $request->filter]);
-                $files = Input::file('files');
                 if ($request->hasFile('files')) {
+                  $files = Input::file('files');
                   $rules = array('file' => 'required'); //'required|mimes:png,gif,jpeg,txt,pdf,doc'
                   if(is_array($files) && !empty($files)){
                     foreach($files as $file) {
@@ -73,7 +74,7 @@ class PostController extends Controller
                       }
                     }
                     foreach($files as $file) {
-                      $destinationPath = 'uploads';
+                      $destinationPath = 'uploads/annex';
                       $dt = date('YmdHis');
                       $filename = $dt . rand(11111,99999) . $file->getClientOriginalName();
                       $upload_success = $file->move($destinationPath, $filename);
@@ -149,10 +150,41 @@ class PostController extends Controller
           $p->content = $request->content;
           $p->filter = $request->filter;
 
+          //delete file form db and public/uploads
+          if ($request->delFile || $request->hasFile('files')) {
+            $allFile = Postfiles::where('postid', $id)->get();
+            foreach ($allFile as $f) {
+              File::delete('uploads/annex/' . $f->path);
+            }
+            Postfiles::where('postid', $id)->delete();
+            if ($request->hasFile('files')) {
+              $files = Input::file('files');
+              $rules = array('file' => 'required'); //'required|mimes:png,gif,jpeg,txt,pdf,doc'
+              if(is_array($files) && !empty($files)){
+                foreach($files as $file) {
+                  $validator = Validator::make(array('file'=> $file), $rules);
+                  if(!$validator->passes()){
+                    return '檔案上傳失敗';
+                  }
+                }
+                foreach($files as $file) {
+                  $destinationPath = 'uploads/annex';
+                  $dt = date('YmdHis');
+                  $filename = $dt . rand(11111,99999) . $file->getClientOriginalName();
+                  $upload_success = $file->move($destinationPath, $filename);
+                  Postfiles::create(['postid' => $id, 'path' => $filename ]);
+                }
+                Session::flash('success', 'Upload successfully');
+              }else{
+                return '檔案上傳失敗';
+              }
+            }
+          }
+
 
           $p->save();
           $p->push();
-
+          Session::flash('success', 'Upload successfully');
           return redirect('admin');
         }else{
           return response()->json([

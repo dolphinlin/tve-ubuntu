@@ -1,11 +1,11 @@
-@extends('view.app')
+@extends('view.app3')
 
 @section('content')
   <div>
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">表單下載</a></li>
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">網路資源</a></li>
   </ul>
 
   <!-- Tab panes -->
@@ -16,53 +16,9 @@
           <div class="row">
             <div class="col-lg-4">
               <div class="list-group">
-                <a href="#" class="list-group-item active">
-                  <span class="badge">14</span>
-                  修業相關
-                </a>
-                <a href="#" class="list-group-item">
-                  <span class="badge">0</span>
-                  資格考
-                </a>
-                <a href="#" class="list-group-item">
-                  <span class="badge">7</span>
-                  計劃發表
-                </a>
-                <a href="#" class="list-group-item">
-                  <span class="badge">10</span>
-                  論文格式
-                </a>
-                <a href="#" class="list-group-item">
-                  <span class="badge">5</span>
-                  學位考試
-                </a>
-                <a href="#" class="list-group-item">
-                  <span class="badge">5</span>
-                  導生活動
-                </a>
-                <a href="#" class="list-group-item">
-                  <span class="badge">5</span>
-                  專題演講
-                </a>
-                <a href="#" class="list-group-item">
-                  <span class="badge">5</span>
-                  校外參訪
-                </a>
-                <a href="#" class="list-group-item">
-                  <span class="badge">5</span>
-                  學籍及畢業
-                </a>
-                <a href="#" class="list-group-item">
-                  <span class="badge">5</span>
-                  其他
-                </a>
-                <a href="#" class="list-group-item">
-                  <span class="badge">5</span>
-                  教師帶領研究生參加研討會論文發表紀錄
-                </a>
-                <a href="#" class="list-group-item">
-                  <span class="badge">5</span>
-                  提案單
+                <a href="#" class="list-group-item" v-for="f in fs" v-on:click="changeData(f.id)" :class="{ 'active' : (filterby == f.id) }">
+                  <span class="badge">@{{netreses | subclass f.id | count}}</span>
+                  @{{ f.title }}
                 </a>
 
               </div>
@@ -72,10 +28,10 @@
                 <!-- Default panel contents -->
                 <div class="panel-heading">Panel heading</div>
                 <div class="panel-body">
-                  <a href="http://www.chna.edu.tw/">
+                  <a v-for="n in netreses | subclass" :href="n.url" target="_blank">
                     <div class="container-fluid postEntry">
                       <div class="col-lg-12">
-                        test
+                        @{{ n.name }}
                       </div>
                     </div>
                   </a>
@@ -91,4 +47,8 @@
 </div>
 
 
+@endsection
+
+@section('js')
+  <script src="/js/netres.js"></script>
 @endsection

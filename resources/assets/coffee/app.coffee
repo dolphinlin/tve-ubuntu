@@ -19,6 +19,9 @@ app = new Vue(
 			files: []
 		errors: ''
 		filterby: 0
+		ff:
+			id: 1
+			subclass: ''
 	filters:
 		subclass: ->
 			that = this
@@ -118,6 +121,30 @@ app = new Vue(
 						that.pages = res
 						that.posts = that.pages.data
 					)
+		getFDFilter: (id) ->
+      that = this
+      $.ajax(
+        method: 'GET'
+        url: '/api/filter/' + id
+        success: (res) ->
+          that.ff = res
+          $('#ShowForm').modal
+            keyboard: false,
+        		show: true
+          console.log 'get success'
+      )
+    deleteFDFilter: (token) ->
+      that = this
+      console.log token
+      $.ajax(
+        method: 'POST'
+        url: '/api/filter/' + that.ff.id
+        data:
+          _method: 'delete'
+          _token : token
+        success: (msg) ->
+          location.reload()
+      )
 
 
 

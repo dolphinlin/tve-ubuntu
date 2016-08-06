@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Yuntech-TVE</title>
+  <title>{{ trans('messages.welcome') }}</title>
+  {{-- {{this is test the locale lang}} --}}
   	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-	  <link rel="stylesheet" href="css/app.css">
+    <script src="/js/bootstrap.min.js"></script>
+	  <link rel="stylesheet" href="/css/app.css">
     @yield('css')
- 	<meta name="csrf-token" content="{{ csrf_token() }}">
+ 	<meta id="token" name="token" value="{{ csrf_token() }}">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes" />
 </head>
@@ -23,15 +24,19 @@
         </div>
         <div class="col-lg-8 text-right clearfix">
           <div id="link" style="padding-top:45px">
-            <a href="#">首頁</a>
+            <a href="/">{{trans('messages.link1')}}</a>
             |
-            <a href="#">網路地圖</a>
+            <a href="#">{{trans('messages.link2')}}</a>
             |
-            <a href="#">English</a>
+            @if( LaravelLocalization::getCurrentLocale() == 'tw' )
+              <a href="/en" target="_self">{{trans('messages.link3')}}</a>
+            @else
+              <a href="/" target="_self">{{trans('messages.link3')}}</a>
+            @endif
             |
-            <a href="#">雲科大首頁</a>
+            <a href="https://www.yuntech.edu.tw/" target="_blank">{{trans('messages.link4')}}</a>
             |
-            <a href="#">師培中心</a>
+            <a href="http://www.tec.yuntech.edu.tw/" target="_blank">{{trans('messages.link5')}}</a>
             |
           </div>
         </div>
@@ -48,7 +53,9 @@
 
   @include('common._footer')
 	</div>
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+<script src="//cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
 @yield('js')
 </body>
 </html>

@@ -16,6 +16,8 @@ elixir(function(mix) {
   mix.coffee('app.coffee');
   mix.coffee('teacher.coffee');
   mix.coffee('formdata.coffee');
+  mix.coffee('netres.coffee');
+  mix.coffee('paper.coffee');
   mix.sass('app.scss')
     .copy(bootstrapPath + '/fonts', 'public/fonts')
     .copy(bootstrapPath + '/javascripts/bootstrap.min.js', 'public/js');

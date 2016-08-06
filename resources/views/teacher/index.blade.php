@@ -60,5 +60,5 @@
 @stop
 
 @section('js')
-	<script src="js/teacher.js"></script>
+	<script src="/js/teacher.js"></script>
 @endsection

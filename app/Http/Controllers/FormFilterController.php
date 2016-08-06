@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Http\Requests;
 use App\FormFilter;
+use App\Formdl;
 use Auth;
 
 class FormFilterController extends Controller
@@ -65,6 +66,8 @@ class FormFilterController extends Controller
     public function show($id)
     {
         //
+        $q = FormFilter::find($id);
+        return response()->json($q, 200, [], JSON_NUMERIC_CHECK);
     }
 
     /**
@@ -88,6 +91,17 @@ class FormFilterController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        if (Auth::check()) {
+          $q = FormFilter::find($id);
+          $q->title = $request->title;
+          $q->save();
+          return redirect('admin/res/new');
+        }else{
+          return response()->json([
+              'error' => 'Permission Denied.'
+          ], 401);
+        }
     }
 
     /**
@@ -99,5 +113,15 @@ class FormFilterController extends Controller
     public function destroy($id)
     {
         //
+        if (Auth::check() && $id != 1) {
+            $affectedRows = Formdl::where('filter', $id)->update(['filter' => 1]);
+            $p = FormFilter::where('id', $id)->delete();
+            //change original filter to 1(other)
+            return response()->json(['info' => 'success'], 200);
+        }else{
+          return response()->json([
+              'error' => 'Permission Denied.'
+          ], 401);
+        }
     }
 }

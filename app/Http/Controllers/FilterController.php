@@ -10,6 +10,7 @@ use App\Filter;
 
 use Auth;
 use App\User;
+use App\Post;
 
 class FilterController extends Controller
 {
@@ -33,7 +34,7 @@ class FilterController extends Controller
     public function create()
     {
         //
-        
+
     }
 
     /**
@@ -56,7 +57,7 @@ class FilterController extends Controller
                 Filter::create($request->all());
                 $messages = "Create successfully!";
             }
-            return redirect('admin/newpost');            
+            return redirect('admin/newpost');
         }else{
             return response()->json([
                 'error' => 'Cant excute the action.'
@@ -73,6 +74,8 @@ class FilterController extends Controller
     public function show($id)
     {
         //
+        $q = Filter::find($id);
+        return response()->json($q, 200, [], JSON_NUMERIC_CHECK);
     }
 
     /**
@@ -84,6 +87,18 @@ class FilterController extends Controller
     public function edit($id)
     {
         //
+        if (Auth::check()) {
+            $p = Filter::find($id);
+            if (!is_null($p)) {
+                return View('admin.news.edit', compact('p', 'filters'));
+            }else{
+                return 'error';
+            }
+        }else{
+            return response()->json([
+                'error' => 'Permission Denied.'
+            ], 401);
+        }
     }
 
     /**
@@ -96,6 +111,16 @@ class FilterController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if (Auth::check()) {
+            $f = Filter::find($id);
+            $f->subclass = $request->title;
+            $f->save();
+            return redirect('admin/newpost');
+        }else{
+            return response()->json([
+                'error' => 'Permission Denied.'
+            ], 401);
+        }
     }
 
     /**
@@ -107,5 +132,15 @@ class FilterController extends Controller
     public function destroy($id)
     {
         //
+        if (Auth::check() && $id != 1) {
+            $affectedRows = Post::where('filter', $id)->update(['filter' => 1]);
+            $p = Filter::where('id', $id)->delete();
+            //change original filter to 1(other)
+            return redirect('admin/newpost');
+        }else{
+          return response()->json([
+              'error' => 'Permission Denied.'
+          ], 401);
+        }
     }
 }

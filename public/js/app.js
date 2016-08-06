@@ -23,7 +23,11 @@
         files: []
       },
       errors: '',
-      filterby: 0
+      filterby: 0,
+      ff: {
+        id: 1,
+        subclass: ''
+      }
     },
     filters: {
       subclass: function() {
@@ -150,6 +154,40 @@
             }
           });
         }
+      },
+      getFDFilter: function(id) {
+        var that;
+        that = this;
+        return $.ajax({
+          method: 'GET',
+          url: '/api/filter/' + id,
+          success: function(res) {
+            that.ff = res;
+            $('#ShowForm').modal({
+              keyboard: false
+            });
+            ({
+              show: true
+            });
+            return console.log('get success');
+          }
+        });
+      },
+      deleteFDFilter: function(token) {
+        var that;
+        that = this;
+        console.log(token);
+        return $.ajax({
+          method: 'POST',
+          url: '/api/filter/' + that.ff.id,
+          data: {
+            _method: 'delete',
+            _token: token
+          },
+          success: function(msg) {
+            return location.reload();
+          }
+        });
       }
     }
   });

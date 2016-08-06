@@ -74,13 +74,34 @@
                                     <!-- /.nav-third-level -->
                                 </li>
                                 <li>
-                                    <a href="/admin/newpost">網路資源</a>
+                                    <a href="#">網路資源<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="/admin/netres">資源列表</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/netres/new">新增網路資源</a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-third-level -->
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i> Teacher Manage<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-users fa-fw"></i> 畢業論文<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/paper">論文列表</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/paper/new">新增論文</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-users fa-fw"></i> 教師管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="/admin/tc">TeacherList</a>

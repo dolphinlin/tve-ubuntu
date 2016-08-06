@@ -42,7 +42,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="fd in formdatas | subclass ''">
+                    <tr v-for="fd in formdatas | subclass ">
                       <td>
                         @{{fd.title}}
                       </td>
@@ -67,5 +67,5 @@
 @endsection
 
 @section('js')
-  <script src="js/formdata.js"></script>
+  <script src="/js/formdata.js"></script>
 @endsection

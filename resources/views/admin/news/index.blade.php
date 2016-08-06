@@ -39,7 +39,7 @@
 	                                        @endif
 	                                    </td>
 	                                    <td>
-											{!! FORM::open(array('url' => 'post/'.$q->id , 'method' => 'delete')) !!}
+											{!! FORM::open(array('url' => 'post/'.$q->id , 'method' => 'delete', 'class' => 'deleteForm')) !!}
 											<a href="/post/{{ $q->id }}" class="btn btn-default btn-xs" v-on:click="getPostContent('{{'/post/' . $q->id }}', $event)" >預覽</a>
 									        <a href="/post/{{ $q->id }}/edit" class="btn btn-xs btn-info">編輯</a>
 									        {!! FORM::submit('刪除', ['class' => 'btn btn-xs btn-danger']) !!}
@@ -91,4 +91,9 @@
         });
     });
     </script>
+		<script type="text/javascript">
+		     $('.deleteForm').on("submit", function(){
+        return confirm("Do you want to delete this item?");
+    });
+		</script>
 @stop

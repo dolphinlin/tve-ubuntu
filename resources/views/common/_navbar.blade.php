@@ -19,22 +19,27 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <li class={!! Route::current()->getUri() == '/' ? '"active"':'' !!}>
-              <a href="/">首頁</a>
+              <a href="/">{{trans('messages.nav1')}}</a>
             </li>
             <li class={!! Route::current()->getUri() == 'post'? '"active"':'' !!}>
-              <a href="post">公告列表</a>
+              <a href="post">{{trans('messages.nav2')}}</a>
             </li>
-            <li class={!! Route::current()->getUri() == 'teacher'? '"active"':'' !!}>
-              <a href="teacher">系所簡介</a>
+            <li>
+              <a href="#">技職所法規</a>
+            </li>
+            <li>
+              <a href="#">招生資訊</a>
+            </li>
+            <li class={!! Route::current()->getUri() == 'unit'? '"active"':'' !!}>
+              <a href="unit">{{trans('messages.nav3')}}</a>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">系所資源 <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{trans('messages.nav4')}} <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li class="{!! Route::current()->getUri() == 'forms'? 'active':'' !!}"><a href="forms" >表單下載</a></li>
-                <li><a href="netres">網路資源</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li class="{!! Route::current()->getUri() == 'forms'? 'active':'' !!}"><a href="forms" >{{trans('messages.nav4-1')}}</a></li>
+                <li><a href="netres">{{trans('messages.nav4-2')}}</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
+                <li><a href="paper">畢業論文</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="#">One more separated link</a></li>
               </ul>

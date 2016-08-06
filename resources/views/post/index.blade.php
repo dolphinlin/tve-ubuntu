@@ -19,7 +19,7 @@
 				<div class="container-fluid postEntry">
 					<div class="col-lg-2 col-xs-3">
 						<strong>
-							分類
+							日期
 						</strong>
 					</div>
 					<div class="col-lg-8 col-xs-5">
@@ -29,7 +29,7 @@
 					</div>
 					<div class="col-lg-2 col-xs-4">
 						<strong>
-							日期
+							分類
 						</strong>
 					</div>
 				</div>
@@ -38,7 +38,7 @@
 						<div v-if="posts.data | subclass | count">
 							<a v-for="p in posts.data | subclass " href="/post/@{{ p.id}}" class="ajax_modal" v-on:click="getPostContent('/post/' + p.id, $event)" >
 								<div class="container-fluid postEntry">
-									<div class="col-lg-2 col-xs-3">@{{ p.created_at | dateProcess 'md' }}</div>
+									<div class="col-lg-2 col-xs-3">[@{{ p.created_at | dateProcess 'date' }}]</div>
 									<div class="col-lg-8 col-xs-5">@{{ p.title }}</div>
 									<div class="col-lg-2 col-xs-4">
 										<span class="label label-primary">

@@ -15,7 +15,7 @@
         </div>
         <p></p>
         <div class="MFile" id="ModalFile">
-          <a v-for="f in post.files" href="/uploads/@{{ f.path }}" target="_blank"><p>附件@{{$index + 1}} </p></a>
+          <a v-for="f in post.files" href="/uploads/annex/@{{ f.path }}" target="_blank"><p>附件@{{$index + 1}} </p></a>
         </div>
       </div>
 

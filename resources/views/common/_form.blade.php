@@ -48,24 +48,33 @@
 
             <div class="row">
               <div class="col-lg-6">
-                <div class="panel panel-success">
+                <div class="panel panel-danger">
                   <div class="panel-heading">
-                    <i class="fa fa-list-alt fa-fw"></i>附件
+                    <i class="fa fa-list-alt fa-fw"></i>管理分類
                   </div>
                   <!-- /.panel-heading -->
                   <div class="panel-body">
-                    {!! FORM::open(array('url'=>'/upload','method'=>'POST', 'files'=>true)) !!}
-                    <div class="control-group">
-
-                      <p></p>
-                      {!! Form::submit('Submit', array('class'=>'btn btn-info')) !!}
-
+                    {!! FORM::open(array('url' => '/api/formfilter', 'class' => '')) !!}
+                    <fieldset class="form-group">
+                      <select class="form-control" name="filter" id="filter" v-model="ff.id">
+                        <option v-for="f in filters" :value="f.id">
+                        @{{ f.subclass }}
+                        </option>
+                      </select>
+                    </fieldset>
+                    <div class="row">
+                      <fieldset class="form-froup col-lg-6">
+                        <button type="button" class="form-control btn btn-success" v-on:click="getFDFilter(ff.id)">編輯</button>
+                      </fieldset>
+                      <fieldset class="form-froup col-lg-6">
+                        <button type="button" name="button" class="form-control btn btn-danger" v-on:click="deleteFDFilter('{{ csrf_token() }}')">刪除</button>
+                      </fieldset>
                     </div>
-                    {!! Form::close() !!}
+
+                    {!! FORM::close() !!}
                   </div>
                   <!-- /.panel-body -->
                 </div>
-                <!-- /.panel -->
 
               </div>
               <div class="col-lg-6">

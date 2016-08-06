@@ -108,6 +108,21 @@ class FormdlController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if (Auth::check()) {
+          $f = Formdl::find($id);
+          $f->title = $request->title;
+          $f->name = $request->name;
+          $f->url = $request->url;
+          $f->filter = $request->filter;
+
+          $f->save();
+          return redirect('admin/res');
+        }else{
+          return response()->json([
+              'error' => 'Permission Denied.'
+          ], 401);
+        }
+
     }
 
     /**
@@ -122,7 +137,9 @@ class FormdlController extends Controller
           $p = Formdl::where('id', $id)->delete();
           return redirect('admin/res');
       }else{
-          return redirect('/');
+        return response()->json([
+            'error' => 'Permission Denied.'
+        ], 401);
       }
     }
 

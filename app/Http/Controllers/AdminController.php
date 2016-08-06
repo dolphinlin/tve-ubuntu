@@ -10,6 +10,11 @@ use App\Formdl;
 use App\FormFilter;
 use App\Post;
 use App\Filter;
+use App\Netres;
+use App\NetresFilter;
+use App\Paper;
+use App\PaperT;
+use Illuminate\Support\Facades\Input;
 
 class AdminController extends Controller
 {
@@ -69,9 +74,58 @@ class AdminController extends Controller
 			}
 
 		}
-		public function test()
+		public function netres()
 		{
-			$filters = FormFilter::all();
-			return $filters;
+			if (Auth::check()) {
+				$query = Netres::all();
+				$filters = NetresFilter::all();
+				return view('admin.netres.index', compact('query', 'filters'));
+			}else {
+				return response()->json([
+						'error' => 'Permission Denied.'
+				], 401);
+			}
+		}
+		public function newNr()
+		{
+			if (Auth::check()) {
+				return view('admin.netres.newres');
+			}else {
+				return response()->json([
+						'error' => 'Permission Denied.'
+				], 401);
+			}
+		}
+		public function paper()
+		{
+			if (Auth::check()) {
+				$query = Paper::all();
+				$qt = PaperT::all();
+				return view('admin.paper.index', compact('query', 'qt'));
+			}else {
+				return response()->json([
+						'error' => 'Permission Denied.'
+				], 401);
+			}
+		}
+		public function newPaper()
+		{
+			if (Auth::check()) {
+				return view('admin.paper.new');
+			}else {
+				return response()->json([
+						'error' => 'Permission Denied.'
+				], 401);
+			}
+		}
+		public function testGet()
+		{
+			$filters = FormFilter::where('id', 1)->get();
+			return View('view.test', compact('filters'));
+		}
+		public function testPost()
+		{
+			$search = Input::get('search');
+			return $search;
 		}
 }

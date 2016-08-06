@@ -54,25 +54,57 @@
               </div>
       </div>
       <div class="col-lg-6">
-        <div class="panel panel-danger">
-          <div class="panel-heading">
-            <i class="fa fa-list-alt fa-fw"></i>新增分類
-          </div>
-          <!-- /.panel-heading -->
-          <div class="panel-body">
-            {!! FORM::open(array('url' => '/api/formfilter')) !!}
-            <fieldset class="form-group">
-              {{ FORM::label('title', '分類') }}
-              {{ FORM::text('title', '', array('class' => 'form-control', 'required' => ''))}}
-            </fieldset>
+        <div class="row">
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <i class="fa fa-list-alt fa-fw"></i>新增分類
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+              {!! FORM::open(array('url' => '/api/formfilter')) !!}
+              <fieldset class="form-group">
+                {{ FORM::label('title', '分類') }}
+                {{ FORM::text('title', '', array('class' => 'form-control', 'required' => ''))}}
+              </fieldset>
 
-            <fieldset class="form-froup">
-              {{ FORM::submit('新增', array('class' => 'form-control btn btn-primary')) }}
-            </fieldset>
+              <fieldset class="form-froup">
+                {{ FORM::submit('新增', array('class' => 'form-control btn btn-primary')) }}
+              </fieldset>
 
-            {!! FORM::close() !!}
+              {!! FORM::close() !!}
+            </div>
+            <!-- /.panel-body -->
           </div>
-          <!-- /.panel-body -->
+        </div>
+        <div class="row">
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <i class="fa fa-list-alt fa-fw"></i>管理分類
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+              {!! FORM::open(array('url' => '/api/formfilter', 'class' => '')) !!}
+              <fieldset class="form-group">
+                <select class="form-control" name="filter" id="filter" v-model="ff.id">
+                  <option v-for="f in fs" :value="f.id">
+                  @{{ f.title }}
+                  </option>
+                </select>
+              </fieldset>
+              <div class="row">
+                <fieldset class="form-froup col-lg-6">
+                  <button type="button" class="form-control btn btn-success" v-on:click="getFDFilter(ff.id)">編輯</button>
+                </fieldset>
+                <fieldset class="form-froup col-lg-6">
+                  <button type="button" name="button" class="form-control btn btn-danger" v-on:click="deleteFD()">刪除</button>
+                </fieldset>
+              </div>
+
+              {!! FORM::close() !!}
+            </div>
+            <!-- /.panel-body -->
+          </div>
+        </div>
         </div>
       </div>
       <!-- /.row -->
@@ -81,6 +113,7 @@
 @stop
 
 @section('other')
+  @include('common._editfdfilter')
 @stop
 
 @section('bottom')	<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
@@ -92,10 +125,11 @@
     <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/morrisjs/morris.min.js"></script>
 
     <!-- DataTables JavaScript -->
-    <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-    <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
-    <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
     <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js"></script>
 	<script src="/js/formdata.js"></script>
-
+  <script type="text/javascript">
+       $('.deleteForm').on("submit", function(){
+      return confirm("Do you want to delete this item?");
+  });
+  </script>
 @stop
