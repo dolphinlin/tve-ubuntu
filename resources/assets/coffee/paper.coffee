@@ -67,17 +67,17 @@ app = new Vue(
         (res) =>
           alter('Get Error')
       )
-    deleteTeacher: (token) ->
+    getPaper: (id) ->
       that = this
-      console.log token
-      $.ajax(
-        method: 'post'
-        url: '/api/formfilter/' + that.ff.id
-        data:
-          _method: 'delete'
-          _token : token
-        success: (msg) ->
-          location.reload()
+      that.$http.get('/api/paper/' + id).then(
+        (res) =>
+          console.log res.data
+          that.paper = res.data
+          $('#ShowForm').modal
+            keyboard: false,
+        		show: true
+        (res) =>
+          alter('Get Error')
       )
     deleteFD: ->
       that = this

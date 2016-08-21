@@ -14,6 +14,7 @@
     data: {
       filters: [],
       posts: [],
+      acts: [],
       pages: [],
       post: {
         id: 0,
@@ -21,6 +22,12 @@
         content: '',
         filter: 0,
         files: []
+      },
+      act: {
+        id: 0,
+        title: '',
+        content: '',
+        filter: 999
       },
       errors: '',
       filterby: 0,
@@ -90,6 +97,13 @@
           return that.posts = res.data;
         }
       });
+      $.ajax({
+        method: 'GET',
+        url: '/api/act/all?page=1',
+        success: function(res) {
+          return that.acts = res.data;
+        }
+      });
       return that.getFilter();
     },
     methods: {
@@ -127,6 +141,20 @@
             console.log(data);
             return that.post.files = data;
           }));
+        });
+      },
+      getActiveContent: function(href, e) {
+        var that;
+        e.preventDefault();
+        that = this;
+        that.getFilter();
+        return $.get(href, function(data) {
+          console.log(data);
+          that.act = data;
+          return $('#ActiveDialog').modal({
+            keyboard: false,
+            show: true
+          });
         });
       },
       setFilter: function(f, e) {

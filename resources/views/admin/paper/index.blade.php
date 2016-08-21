@@ -44,9 +44,8 @@
   	                                        @endif
   	                                    </td>
   	                                    <td>
-  											{!! FORM::open(array('url' => 'post/'.$q->id , 'method' => 'delete', 'class' => 'deleteForm')) !!}
-  											<a href="/post/{{ $q->id }}" class="btn btn-default btn-xs" v-on:click="getPostContent('{{'/post/' . $q->id }}', $event)" >預覽</a>
-  									        <a href="/post/{{ $q->id }}/edit" class="btn btn-xs btn-info">編輯</a>
+  											{!! FORM::open(array('url' => '/api/paper/'.$q->id , 'method' => 'delete', 'class' => 'deleteForm')) !!}
+  									        <a href="#" class="btn btn-xs btn-info" v-on:click.prevent="getPaper({{$q->id}})">編輯</a>
   									        {!! FORM::submit('刪除', ['class' => 'btn btn-xs btn-danger']) !!}
   											{!! FORM::close() !!}
   	                                    </td>
@@ -68,21 +67,25 @@
   	</div>
 @endsection
 
-@section('bottom')
-  <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-  <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/raphael/raphael-min.js"></script>
-    <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/morrisjs/morris.min.js"></script>
+@section('other')
+  @include('common._editpaper')
+@endsection
+
+@section('bottom')		<script src="/js/metisMenu/metisMenu.min.js"></script>
+		<script src="/js/raphael/raphael-min.js"></script>
+    <script src="/js/morrisjs/morris.min.js"></script>
 
     <!-- DataTables JavaScript -->
-    <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-    <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
-    <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
-    <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js"></script>
+    <script src="/js/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="/js/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="/js/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="/js/sb-admin-2.js"></script>
+
+    <script src="/js/paper.js"></script>
     <script>
     $(document).ready(function() {
         $('#data-table').DataTable({
-                responsive: true,
-                "order": [[ 0, "desc" ]]
+                responsive: true
         });
     });
     </script>

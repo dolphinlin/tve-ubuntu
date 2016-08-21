@@ -15,6 +15,7 @@ return [
     'nav2' => 'News',
     'nav3' => 'About',
     'nav4' => 'Resource',
+    'nav5' => 'Teacher',
     'nav4-1' => 'Form Download',
     'nav4-2' => 'New Resource'
 ];

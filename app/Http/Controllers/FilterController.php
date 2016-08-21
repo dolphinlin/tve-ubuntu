@@ -22,7 +22,7 @@ class FilterController extends Controller
     public function index()
     {
         //
-        $filters = Filter::all();
+        $filters = Filter::where('id', '!=', 999)->get();
         return response()->json($filters);
     }
 

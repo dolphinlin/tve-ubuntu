@@ -28,6 +28,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         Route::get('netres/all', 'NetresController@all');
         Route::get('paper/all', 'PaperController@all');
         Route::get('paper/allteacher', 'PaperController@allteacher');
+        Route::get('act/all', 'PostController@act');
+        Route::get('reg/all', 'RegController@all');
+        Route::get('reg/filters', 'RegController@filters');
+        Route::get('enroll/doctor', 'EnrollController@doctor');
+        Route::get('enroll/master', 'EnrollController@master');
+        Route::get('enroll/nightclass', 'EnrollController@nightclass');
+        Route::get('enroll/exam', 'EnrollController@exam');
 
         Route::resource('filter', 'FilterController');
         Route::resource('formdata', 'FormdlController');
@@ -36,6 +43,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         Route::resource('resfilter', 'NetresFilterController');
         Route::resource('paper', 'PaperController');
         Route::resource('papert', 'PaperTController');
+        Route::resource('teacher', 'TeacherController');
+        Route::resource('enroll', 'EnrollController');
     });
 
 
@@ -49,6 +58,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
       Route::get('netres', 'AdminController@netres');
       Route::get('netres/new', 'AdminController@newNr');
       Route::get('paper', 'AdminController@paper');
+
       Route::get('paper/new', 'AdminController@newPaper');
     });
 
@@ -60,6 +70,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
     Route::get('paper', function(){
       return View('paper.index');
+    });
+    Route::get('enroll', function(){
+      return View('enroll.index');
     });
 
     Route::get('login', 'Auth\AuthController@getLogin');
@@ -75,7 +88,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
       return View('downloads.netres');
     });
 
-    Route::get('test', 'AdminController@testGet');
-    Route::post('test', 'AdminController@testPost');
+    Route::get('regulation', function (){
+      return View('reg.index');
+    });
+
+    Route::get('teacher', function(){
+      return View('teacher.index');
+    });
 
 });

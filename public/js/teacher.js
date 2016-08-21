@@ -25,7 +25,7 @@
       });
       return $.ajax({
         method: 'GET',
-        url: '/teacher/' + that.selected,
+        url: '/api/teacher/' + that.selected,
         success: function(res) {
           that.teacher = res;
           console.log(res);
@@ -44,7 +44,7 @@
         that.selected = id;
         return $.ajax({
           method: 'GET',
-          url: '/teacher/' + that.selected,
+          url: '/api/teacher/' + that.selected,
           success: function(res) {
             that.teacher = res;
             console.log(res);

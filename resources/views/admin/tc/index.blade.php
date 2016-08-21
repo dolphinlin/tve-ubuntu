@@ -4,7 +4,7 @@
 	<div id="page-wrapper">
 	    <div class="row">
 	        <div class="col-lg-12">
-	            <h1 class="page-header">News List</h1>
+	            <h1 class="page-header">教師列表</h1>
 	        </div>
 	        <!-- /.col-lg-12 -->
 	    </div>
@@ -14,7 +14,7 @@
 	        <div class="col-lg-12">
 	            <div class="panel panel-primary">
 	                <div class="panel-heading">
-	                    <i class="fa fa-list-alt fa-fw"></i>News
+	                    <i class="fa fa-list-alt fa-fw"></i>教師
 	                    <div class="pull-right">
 	                        <div class="btn-group">
 	                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -38,7 +38,7 @@
 	                <!-- /.panel-heading -->
 	                <div class="panel-body">
 	                </div>
-	                <!-- /.panel-body -->	                
+	                <!-- /.panel-body -->
 	                    <div class="dataTable_wrapper">
 	                        <table width="100%" class="table table-bordered table-hover table-striped" id="data-table">
 	                            <thead>
@@ -57,10 +57,10 @@
 	                                    <td>{{$q->title}}</td>
 	                                    <td>
 											{!! FORM::open(array('url' => 'post/'.$q->id , 'method' => 'delete')) !!}
-											<a href="/post/{{ $q->id }}" class="btn btn-default btn-sm" v-on:click="getTcContent('{{'/teacher/' . $q->id }}', $event)" >View</a>
-									        <a href="/post/{{ $q->id }}/edit" class="btn btn-sm btn-info">Edit</a>
-									        {!! FORM::submit('Delete', ['class' => 'btn btn-sm btn-danger']) !!}
-											{!! FORM::close() !!}	                                        
+											<a href="/api/teacher/{{ $q->id }}" class="btn btn-default btn-xs" v-on:click="getTcContent('{{'/api/teacher/' . $q->id }}', $event)" >View</a>
+									        <a href="/api/teacher/{{ $q->id }}/edit" class="btn btn-xs btn-info">Edit</a>
+									        {!! FORM::submit('Delete', ['class' => 'btn btn-xs btn-danger']) !!}
+											{!! FORM::close() !!}
 	                                    </td>
 	                                </tr>
 	                            @endforeach
@@ -85,16 +85,16 @@
 @section('bottom')
 	<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
   	<script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
-	
-	
+
+
 	<script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/metisMenu/dist/metisMenu.min.js"></script>
 	<script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/raphael/raphael-min.js"></script>
     <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/morrisjs/morris.min.js"></script>
-	
+
     <!-- DataTables JavaScript -->
     <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
     <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
     <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
-    <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js"></script> 
+    <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js"></script>
 	<script src="/js/teacher.js"></script>
 @stop

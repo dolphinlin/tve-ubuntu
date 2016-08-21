@@ -96,21 +96,25 @@
           };
         })(this));
       },
-      deleteTeacher: function(token) {
+      getPaper: function(id) {
         var that;
         that = this;
-        console.log(token);
-        return $.ajax({
-          method: 'post',
-          url: '/api/formfilter/' + that.ff.id,
-          data: {
-            _method: 'delete',
-            _token: token
-          },
-          success: function(msg) {
-            return location.reload();
-          }
-        });
+        return that.$http.get('/api/paper/' + id).then((function(_this) {
+          return function(res) {
+            console.log(res.data);
+            that.paper = res.data;
+            $('#ShowForm').modal({
+              keyboard: false
+            });
+            return {
+              show: true
+            };
+          };
+        })(this), (function(_this) {
+          return function(res) {
+            return alter('Get Error');
+          };
+        })(this));
       },
       deleteFD: function() {
         var that;

@@ -16,6 +16,7 @@
     <li role="presentation"><a href="#t9" aria-controls="profile" role="tab" data-toggle="tab">所辦成員</a></li>
     <li role="presentation"><a href="#t10" aria-controls="profile" role="tab" data-toggle="tab">交通資訊</a></li>
     <li role="presentation"><a href="#t11" aria-controls="profile" role="tab" data-toggle="tab">所辦位置</a></li>
+    <li role="presentation"><a href="#t12" aria-controls="profile" role="tab" data-toggle="tab">師資介紹</a></li>
   </ul>
 
   <!-- Tab panes -->
@@ -225,6 +226,27 @@
       <div class="panel panel-primary">
         <div class="panel-body">
           <img src="http://www.tve.yuntech.edu.tw/bulletin/upload/images/office%20map.JPG" alt="office" class="img-responsive img-thumbnail">
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="t12" role="tabpanel">
+      <div class="panel panel-primary">
+        <div class="panel-body">
+          <row>
+            <div class="col-lg-4">
+              <div class="list-group">
+                <a href="#" class="list-group-item">
+                  Teacher 1
+                </a>
+                <a href="#" class="list-group-item">
+                  Teacher 2
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-8">
+
+            </div>
+          </row>
         </div>
       </div>
     </div>

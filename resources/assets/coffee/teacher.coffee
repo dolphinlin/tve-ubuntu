@@ -18,7 +18,7 @@ admin = new Vue(
 			)
 		$.ajax(
 			method: 'GET'
-			url: '/teacher/' + that.selected
+			url: '/api/teacher/' + that.selected
 			success: (res) ->
 				that.teacher = res
 				console.log(res)
@@ -33,7 +33,7 @@ admin = new Vue(
 			that.selected = id
 			$.ajax(
 				method: 'GET'
-				url: '/teacher/' + that.selected
+				url: '/api/teacher/' + that.selected
 				success: (res) ->
 					that.teacher = res
 					console.log(res)

@@ -90,17 +90,22 @@
                   </strong>
                 </div>
               </div>
-              <a v-for="p in 5" href="/post/@{{ posts[p].id}}" class="ajax_modal" v-on:click="getPostContent('/post/' + posts[p].id, $event)" >
-                <div class="container-fluid postEntry">
-                  <div class="col-lg-2 col-xs-4">
-                    <span class="label label-info">
-                      @{{ filters[posts[p].filter - 1].subclass }}
-                    </span>
+              <div v-if="acts | count">
+                <a v-for="p in 5" href="#" class="ajax_modal" v-on:click="getActiveContent('/post/' + acts[p].id, $event)" >
+                  <div class="container-fluid postEntry">
+                    <div class="col-lg-2 col-xs-4">
+                      <span class="label label-info">
+                        活動
+                      </span>
+                    </div>
+                    <div class="col-lg-7 col-xs-5">@{{ acts[p].title | strLenPoc 7 }}</div>
+                    <div class="col-lg-3 col-xs-3">[@{{ acts[p].created_at | dateProcess 'date' }}]</div>
                   </div>
-                  <div class="col-lg-7 col-xs-5">@{{ posts[p].title | strLenPoc 7 }}</div>
-                  <div class="col-lg-3 col-xs-3">[@{{ posts[p].created_at | dateProcess 'date' }}]</div>
-                </div>
-              </a>
+                </a>
+              </div>
+              <div v-else>
+                無公告
+              </div>
               <p></p>
               <div class="container-fluid">
                 <p><a href="/post" class="btn btn-danger pull-right" role="button">More</a></p>
@@ -154,6 +159,7 @@
 @stop
 @section('other')
   @include('common._modal')
+  @include('common._acmodal')
 @stop
 
 @section('js')

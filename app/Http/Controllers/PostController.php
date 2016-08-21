@@ -215,8 +215,8 @@ class PostController extends Controller
     public function admin(){
         if (Auth::check()) // here checking by slug. You can pass an id or slug
         {
-            $query = Post::select('id', 'title', 'filter', 'created_at')->orderBy('id', 'DESC')->get();
-            $filters = Filter::all();
+            $query = Post::select('id', 'title', 'filter', 'created_at')->where('filter', '!=', 999)->orderBy('id', 'DESC')->get();
+            $filters = Filter::where('id', '!=', 999)->get();
             return view('admin.news.index', compact('query', 'filters'));
         }else{
             return redirect('login');
@@ -225,7 +225,7 @@ class PostController extends Controller
 
     public function all()
     {
-        $query = Post::select('id', 'title', 'filter', 'created_at')->orderBy('id', 'DESC')->paginate(10);
+        $query = Post::select('id', 'title', 'filter', 'created_at')->where('filter', '!=', 999)->orderBy('id', 'DESC')->paginate(10);
         $filters = Filter::all();
 
         return response()->json($query, 200, [], JSON_NUMERIC_CHECK);
@@ -234,5 +234,10 @@ class PostController extends Controller
     {
         $posts = Post::paginate(10);
         return $posts;
+    }
+    public function act()
+    {
+      $query = Post::select('id', 'title', 'filter', 'created_at')->where('filter', 999)->orderBy('id', 'DESC')->paginate(10);
+      return response()->json($query, 200, [], JSON_NUMERIC_CHECK);
     }
 }

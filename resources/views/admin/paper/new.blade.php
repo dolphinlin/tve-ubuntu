@@ -120,8 +120,7 @@
   @include('common._editteacher')
 @stop
 
-@section('bottom')	<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-  	<script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
+@section('bottom')
 
 
 	<script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/metisMenu/dist/metisMenu.min.js"></script>
@@ -131,9 +130,4 @@
     <!-- DataTables JavaScript -->
     <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js"></script>
 	<script src="/js/paper.js"></script>
-  <script type="text/javascript">
-       $('.deleteForm').on("submit", function(){
-      return confirm("Do you want to delete this item?");
-  });
-  </script>
 @stop

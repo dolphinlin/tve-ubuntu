@@ -4,8 +4,8 @@
   <title>Manager Sys</title>
   	<link href="/css/app.css" rel="stylesheet">
 
-    <link href="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
-    <link href="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/js/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
  	<link href="/css/sb-admin-2.css" rel="stylesheet">
 
   <meta id="token" name="token" value="{{ csrf_token() }}">

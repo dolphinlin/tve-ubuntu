@@ -24,11 +24,14 @@
             <li class={!! Route::current()->getUri() == 'post'? '"active"':'' !!}>
               <a href="post">{{trans('messages.nav2')}}</a>
             </li>
-            <li>
-              <a href="#">技職所法規</a>
+            <li class={!! Route::current()->getUri() == 'regulation'? '"active"':'' !!}>
+              <a href="regulation">技職所法規</a>
             </li>
-            <li>
-              <a href="#">招生資訊</a>
+            <li class={!! Route::current()->getUri() == 'enroll'? '"active"':'' !!}>
+              <a href="enroll">招生資訊</a>
+            </li>
+            <li class={!! Route::current()->getUri() == 'teacher'? '"active"':'' !!}>
+              <a href="teacher">{{trans('messages.nav5')}}</a>
             </li>
             <li class={!! Route::current()->getUri() == 'unit'? '"active"':'' !!}>
               <a href="unit">{{trans('messages.nav3')}}</a>

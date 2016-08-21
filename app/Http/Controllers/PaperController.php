@@ -71,6 +71,8 @@ class PaperController extends Controller
     public function show($id)
     {
         //
+        $q = Paper::find($id);
+        return response()->json($q, 200, [], JSON_NUMERIC_CHECK);
     }
 
     /**
@@ -105,6 +107,12 @@ class PaperController extends Controller
     public function destroy($id)
     {
         //
+        if (Auth::check()) {
+            $p = Paper::where('id', $id)->delete();
+            return redirect('admin/paper');
+        }else{
+            return redirect('/');
+        }
     }
     public function all()
     {

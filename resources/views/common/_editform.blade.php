@@ -15,7 +15,7 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-					{!! FORM::open(array('url' => 'post/'.$p->id, 'method' => 'put', 'files'=>true)) !!}
+					{!! FORM::open(array('url' => '/post/'.$p->id, 'method' => 'put', 'files'=>true)) !!}
 						<fieldset class="form-group">
 							{{ FORM::label('title', '標題') }}
 							{{ FORM::text('title', $p->title, array('class' => 'form-control'))}}

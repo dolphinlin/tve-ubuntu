@@ -10,6 +10,7 @@ app = new Vue(
 	data:
 		filters: []
 		posts: []
+		acts: []
 		pages: []
 		post:
 			id: 0
@@ -17,6 +18,11 @@ app = new Vue(
 			content: ''
 			filter: 0
 			files: []
+		act:
+			id: 0
+			title: ''
+			content: ''
+			filter: 999
 		errors: ''
 		filterby: 0
 		ff:
@@ -69,6 +75,12 @@ app = new Vue(
 				console.log that.pages
 				that.posts = res.data
 			)
+		$.ajax(
+			method: 'GET'
+			url: '/api/act/all?page=1'
+			success: (res) ->
+				that.acts = res.data
+			)
 		that.getFilter()
 	methods:
 		getFilter: ->
@@ -100,6 +112,17 @@ app = new Vue(
 						console.log(data)
 						that.post.files = data
 					)
+			)
+		getActiveContent: (href, e) ->
+			e.preventDefault()
+			that = this
+			that.getFilter()
+			$.get(href, (data) ->
+				console.log(data)
+				that.act = data
+				$('#ActiveDialog').modal
+					keyboard: false,
+					show: true
 			)
 
 		setFilter: (f, e) ->

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 use App\Http\Requests;
 use App\Teacher;
@@ -19,7 +20,7 @@ class TeacherController extends Controller
     {
         //
         $query = Teacher::select('id', 'name', 'title', 'sort')->orderBy('sort')->get();
-        return View('teacher.index', compact('query'));
+        return response()->json($query, 200, [], JSON_NUMERIC_CHECK);
     }
 
     /**
@@ -41,6 +42,22 @@ class TeacherController extends Controller
     public function store(Request $request)
     {
         //
+        $request->merge(['sort' => Teacher::all()->count() + 1]);
+        if (Auth::check()) {
+          $v = Validator::make($request->all(),[
+            'title' => 'required|max:255',
+            'name' => 'required',
+          ]);
+          if ($v->passes()) {
+            Teacher::create($request->all());
+          }
+          return redirect('admin/tc/new');
+          # code...
+        }else{
+          return response()->json([
+              'error' => 'Permission Denied.'
+          ], 401);
+        }
     }
 
     /**
@@ -65,6 +82,14 @@ class TeacherController extends Controller
     public function edit($id)
     {
         //
+        if (Auth::check()) {
+          $q = Teacher::find($id);
+          return View('admin.tc.edit', compact('q'));
+        }else{
+            return response()->json([
+                'error' => 'Permission Denied.'
+            ], 401);
+        }
     }
 
     /**
@@ -76,7 +101,15 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      if (Auth::check()) {
+          $f = Teacher::find($id);
+          $f->update($request->all());
+          return redirect('admin/tc');
+      }else{
+          return response()->json([
+              'error' => 'Permission Denied.'
+          ], 401);
+      }
     }
 
     /**
@@ -103,7 +136,7 @@ class TeacherController extends Controller
     {
         if (Auth::check()) {
             $query = Teacher::select('id', 'name', 'title', 'sort')->orderBy('sort')->get();
-            return View('admin.tc.index', compact('query'));  
+            return View('admin.tc.index', compact('query'));
         }else{
             return response()->json([
                 'error' => 'Permission Denied.'

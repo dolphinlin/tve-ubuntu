@@ -14,6 +14,7 @@ use App\Netres;
 use App\NetresFilter;
 use App\Paper;
 use App\PaperT;
+use App\Teacher;
 use Illuminate\Support\Facades\Input;
 
 class AdminController extends Controller
@@ -21,8 +22,8 @@ class AdminController extends Controller
 	public function index()
     {
         if (Auth::check()) {
-            $query = Post::orderBy('id', 'DESC')->get();
-            $filters = Filter::all();
+            $query = Post::where('filter', '!=', 999)->get();
+            $filters = Filter::where('id', '!=', 999)->get();
             return view('post.index', compact('query', 'filters'));
         }else{
             return response()->json([
@@ -99,7 +100,7 @@ class AdminController extends Controller
 		public function paper()
 		{
 			if (Auth::check()) {
-				$query = Paper::all();
+				$query = Paper::orderBy('id', 'desc')->get();
 				$qt = PaperT::all();
 				return view('admin.paper.index', compact('query', 'qt'));
 			}else {
