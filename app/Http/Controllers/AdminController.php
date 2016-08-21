@@ -15,6 +15,8 @@ use App\NetresFilter;
 use App\Paper;
 use App\PaperT;
 use App\Teacher;
+use App\Reg;
+use App\RegFilter;
 use Illuminate\Support\Facades\Input;
 
 class AdminController extends Controller
@@ -113,6 +115,18 @@ class AdminController extends Controller
 		{
 			if (Auth::check()) {
 				return view('admin.paper.new');
+			}else {
+				return response()->json([
+						'error' => 'Permission Denied.'
+				], 401);
+			}
+		}
+		public function reg()
+		{
+			if (Auth::check()) {
+				$query = Reg::orderBy('id', 'desc')->get();
+				$qt = RegFilter::all();
+				return view('admin.reg.index', compact('query', 'qt'));
 			}else {
 				return response()->json([
 						'error' => 'Permission Denied.'

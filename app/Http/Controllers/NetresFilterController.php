@@ -87,6 +87,15 @@ class NetresFilterController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if (Auth::check()) {
+          $q = NetresFilter::find($id);
+          $f->update($request->all());
+          return redirect('admin/res/new');
+        }else{
+          return response()->json([
+              'error' => 'Permission Denied.'
+          ], 401);
+        }
     }
 
     /**

@@ -31,13 +31,13 @@
 	                                <tr>
 	                                    <td>{{$q->name}}</td>
 	                                    <td>
-	                                        @if ($filters[$q->filter-1])
-	                                            {{ $filters[$q->filter-1]->title }}
+	                                        @if ($qt[$q->filter-1])
+	                                            {{ $qt[$q->filter-1]->title }}
 	                                        @endif
 	                                    </td>
 	                                    <td>
-											{!! FORM::open(array('url' => '/api/netres/'.$q->id , 'method' => 'delete', 'class' => 'deleteForm')) !!}
-									        <a href="#" class="btn btn-xs btn-info" v-on:click="getNetres({{$q->id}})">編輯</a>
+											{!! FORM::open(array('url' => '/api/formdata/'.$q->id , 'method' => 'delete', 'class' => 'deleteForm')) !!}
+									        <a href="#" class="btn btn-xs btn-info" v-on:click="getRegdata({{$q->id}})">編輯</a>
 									        {!! FORM::submit('刪除', ['class' => 'btn btn-xs btn-danger']) !!}
 											{!! FORM::close() !!}
 	                                    </td>
@@ -60,7 +60,7 @@
 @stop
 
 @section('other')
-	@include('common._netresedit')
+	@include('common._regedit')
 @stop
 
 @section('bottom')
@@ -73,8 +73,16 @@
 	<script src="/js/datatables-plugins/dataTables.bootstrap.min.js"></script>
 	<script src="/js/datatables-responsive/dataTables.responsive.js"></script>
 	<script src="/js/sb-admin-2.min.js"></script>
-		<script src="/js/netres.js"></script>
+		<script src="/js/formdata.js"></script>
 
+    <script>
+	    $(document).ready(function() {
+	        $('#data-table').DataTable({
+	                responsive: true,
+	                "order": [[ 0, "desc" ]]
+	        });
+	    });
+    </script>
 		<script type="text/javascript">
 				 $('.deleteForm').on("submit", function(){
 				return confirm("Do you want to delete this item?");

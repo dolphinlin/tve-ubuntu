@@ -71,12 +71,12 @@
         that = this;
         return that.filterby = id;
       },
-      getFormdata: function(id) {
+      getRegdata: function(id) {
         var that;
         that = this;
         return $.ajax({
           method: 'GET',
-          url: '/api/formdata/' + id,
+          url: '/api/reg/' + id,
           success: function(res) {
             that.formdata = res;
             $('#ShowForm').modal({

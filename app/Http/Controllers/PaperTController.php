@@ -93,8 +93,7 @@ class PaperTController extends Controller
 
         if (Auth::check()) {
           $q = PaperT::find($id);
-          $q->name = $request->name;
-          $q->save();
+          $f->update($request->all());
           return redirect('admin/paper/new');
         }else{
           return response()->json([

@@ -96,6 +96,15 @@ class PaperController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if (Auth::check()) {
+          $q = Paper::find($id);
+          $q->update($request->all());
+          return redirect('admin/paper/');
+        }else{
+          return response()->json([
+              'error' => 'Permission Denied.'
+          ], 401);
+        }
     }
 
     /**

@@ -48,7 +48,7 @@
           return null;
         } else {
           if (format === 'date') {
-            return (d.getMonth() + 1) + '-' + d.getDate() + '-' + d.getFullYear();
+            return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
           } else {
             return (d.getMonth() + 1) + '-' + d.getDate();
           }

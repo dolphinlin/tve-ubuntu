@@ -52,11 +52,11 @@ app = new Vue(
     changeData: (id) ->
       that = this
       that.filterby = id
-    getFormdata: (id) ->
+    getRegdata: (id) ->
       that = this
       $.ajax(
         method: 'GET'
-        url: '/api/formdata/' + id
+        url: '/api/reg/' + id
         success: (res) ->
           that.formdata = res
           $('#ShowForm').modal

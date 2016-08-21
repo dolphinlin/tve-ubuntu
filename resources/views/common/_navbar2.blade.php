@@ -104,10 +104,22 @@
                             <a href="#"><i class="fa fa-users fa-fw"></i> 教師管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/admin/tc">TeacherList</a>
+                                    <a href="/admin/tc">教師列表</a>
                                 </li>
                                 <li>
-                                    <a href="/admin/tc/new">Add Teacher</a>
+                                    <a href="/admin/tc/new">新增教師</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-gavel fa-fw"></i> 法規管理<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/reg">法規列表</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/reg/new">新增法規</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

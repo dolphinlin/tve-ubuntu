@@ -69,7 +69,7 @@ class NetresController extends Controller
   public function show($id)
   {
       //
-      $q = Formdl::find($id);
+      $q = Netres::find($id);
       return response()->json($q, 200, [], JSON_NUMERIC_CHECK);
   }
 
@@ -82,8 +82,8 @@ class NetresController extends Controller
   public function edit($id)
   {
     if (Auth::check()) {
-        $p = Formdl::find($id);
-        $filters = FormFilter::all();
+        $p = Netres::find($id);
+        $filters = NetresFilter::all();
         if (!is_null($p)) {
             return View('admin.res.edit', compact('p', 'filters'));
         }else{
@@ -105,7 +105,15 @@ class NetresController extends Controller
    */
   public function update(Request $request, $id)
   {
-      //
+    if (Auth::check()) {
+      $q = Netres::find($id);
+      $q->update($request->all());
+      return redirect('admin/netres/');
+    }else{
+      return response()->json([
+          'error' => 'Permission Denied.'
+      ], 401);
+    }
   }
 
   /**

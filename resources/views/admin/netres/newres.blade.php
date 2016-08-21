@@ -106,14 +106,13 @@
 @section('other')
 @stop
 
-@section('bottom')	<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+@section('bottom')
+  <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
   	<script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
-
-
-	<script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-	<script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/raphael/raphael-min.js"></script>
-    <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/morrisjs/morris.min.js"></script>
-    <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js"></script>
+    <script src="/js/metisMenu/metisMenu.min.js"></script>
+		<script src="/js/raphael/raphael.min.js"></script>
+		<script src="/js/morrisjs/morris.min.js"></script>
+		<script src="/js/sb-admin-2.min.js"></script>
 	<script src="/js/netres.js"></script>
 
 @stop

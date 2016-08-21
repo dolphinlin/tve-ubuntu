@@ -10,31 +10,32 @@
       <div class="modal-body">
         <!---->
         {!! FORM::open(array('url' => '/api/paper/@{{paper.id}}', 'method' => 'put')) !!}
+
           <fieldset class="form-group">
-            {{ FORM::label('year', '學年') }}
-            <input type="number" name="year" id="year" class="form-control" min="85" max="{{date('Y')-1911}}" :value="paper.year" required>
+            {{ FORM::label('name', '法規') }}
+            <input type="text" name="name" id="name" class="form-control" :value="reg.name">
           </fieldset>
 
           <fieldset class="form-group">
-            {{ FORM::label('number', '學號') }}
-            <input type="text" name="number" id="number" class="form-control" :value="paper.number">
+            {{ FORM::label('number', '項目編號') }}
+            <input type="text" name="number" id="number" class="form-control" :value="reg.number" required>
           </fieldset>
 
           <fieldset class="form-group">
-            {{ FORM::label('auth', '姓名') }}
-            <input type="text" name="auth" id="auth" class="form-control" :value="paper.auth" required>
+            {{ FORM::label('url', '網址') }}
+            <input type="text" name="url" id="url" class="form-control" :value="reg.url" required>
           </fieldset>
 
           <fieldset class="form-group">
-            {{ FORM::label('title', '論文名稱') }}
-            <input type="text" name="title" id="title" class="form-control" :value="paper.title" required>
+            {{ FORM::label('day', '最後修訂日期') }}
+            <input type="date" name="day" id="day" class="form-control" :value="reg.day" required>
           </fieldset>
 
           <fieldset class="form-group">
-            <label for="teacher">指導老師</label>
-            <select class="form-control" name="teacher" id="teacher">
-              <option v-for="t in teachers" :value="t.id" :="{'selected' : (t.id == paper.teacher)}">
-              @{{ t.name }}
+            <label for="filter">分類</label>
+            <select class="form-control" name="filter" id="filter">
+              <option v-for="t in fs" :value="t.id" :="{'selected' : (t.id == reg.filter)}">
+              @{{ t.title }}
               </option>
             </select>
           </fieldset>

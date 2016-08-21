@@ -44,6 +44,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         Route::resource('paper', 'PaperController');
         Route::resource('papert', 'PaperTController');
         Route::resource('teacher', 'TeacherController');
+        Route::resource('reg', 'RegController');
+        Route::resource('regfilter', 'RegFilterController');
         Route::resource('enroll', 'EnrollController');
     });
 
@@ -58,6 +60,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
       Route::get('netres', 'AdminController@netres');
       Route::get('netres/new', 'AdminController@newNr');
       Route::get('paper', 'AdminController@paper');
+      Route::get('reg', 'AdminController@reg');
 
       Route::get('paper/new', 'AdminController@newPaper');
     });

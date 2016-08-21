@@ -94,8 +94,7 @@ class FormFilterController extends Controller
 
         if (Auth::check()) {
           $q = FormFilter::find($id);
-          $q->title = $request->title;
-          $q->save();
+          $f->update($request->all());
           return redirect('admin/res/new');
         }else{
           return response()->json([

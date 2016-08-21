@@ -121,13 +121,12 @@
 @stop
 
 @section('bottom')
+  <script src="/js/metisMenu/metisMenu.min.js"></script>
+  <script src="/js/raphael/raphael.min.js"></script>
+  <script src="/js/morrisjs/morris.min.js"></script>
 
+  <!-- DataTables JavaScript -->
+  <script src="/js/sb-admin-2.min.js"></script>
 
-	<script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-	<script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/raphael/raphael-min.js"></script>
-    <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/bower_components/morrisjs/morris.min.js"></script>
-
-    <!-- DataTables JavaScript -->
-    <script src="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js"></script>
-	<script src="/js/paper.js"></script>
+<script src="/js/paper.js"></script>
 @stop

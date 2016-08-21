@@ -110,12 +110,7 @@ class FormdlController extends Controller
         //
         if (Auth::check()) {
           $f = Formdl::find($id);
-          $f->title = $request->title;
-          $f->name = $request->name;
-          $f->url = $request->url;
-          $f->filter = $request->filter;
-
-          $f->save();
+          $f->update($request->all());
           return redirect('admin/res');
         }else{
           return response()->json([

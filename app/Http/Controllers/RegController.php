@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 use App\Http\Requests;
+use Auth;
 use App\Reg;
 use App\RegFilter;
 
@@ -38,7 +40,24 @@ class RegController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      if (Auth::check()) {
+        $v = Validator::make($request->all(),[
+          'name' => 'required',
+          'day' => 'required',
+          'number' => 'required',
+          'url' => 'required',
+          'filter' => 'required',
+        ]);
+        if ($v->passes()) {
+          Reg::create($request->all());
+        }
+        return redirect('admin/reg/new');
+        # code...
+      }else{
+        return response()->json([
+            'error' => 'Permission Denied.'
+        ], 401);
+      }
     }
 
     /**
@@ -50,6 +69,8 @@ class RegController extends Controller
     public function show($id)
     {
         //
+        $q = Reg::find($id);
+        return response()->json($q, 200, [], JSON_NUMERIC_CHECK);
     }
 
     /**
@@ -60,7 +81,19 @@ class RegController extends Controller
      */
     public function edit($id)
     {
-        //
+      if (Auth::check()) {
+          $p = Reg::find($id);
+          $filters = RegFilter::all();
+          if (!is_null($p)) {
+              return View('admin.reg.edit', compact('p', 'filters'));
+          }else{
+              return 'error';
+          }
+      }else{
+          return response()->json([
+              'error' => 'Permission Denied.'
+          ], 401);
+      }
     }
 
     /**
@@ -73,6 +106,15 @@ class RegController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if (Auth::check()) {
+          $q = Reg::find($id);
+          $f->update($request->all());
+          return redirect('admin/reg/new');
+        }else{
+          return response()->json([
+              'error' => 'Permission Denied.'
+          ], 401);
+        }
     }
 
     /**
