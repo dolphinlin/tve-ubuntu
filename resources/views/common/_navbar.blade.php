@@ -44,7 +44,7 @@
                 <li role="separator" class="divider"></li>
                 <li><a href="paper">畢業論文</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#">One more separated link</a></li>
+                <li><a :href="calendar.url">行事曆</a></li>
               </ul>
             </li>
           </ul>

@@ -17,6 +17,7 @@ use App\PaperT;
 use App\Teacher;
 use App\Reg;
 use App\RegFilter;
+use App\Enroll;
 use Illuminate\Support\Facades\Input;
 
 class AdminController extends Controller
@@ -127,6 +128,40 @@ class AdminController extends Controller
 				$query = Reg::orderBy('id', 'desc')->get();
 				$qt = RegFilter::all();
 				return view('admin.reg.index', compact('query', 'qt'));
+			}else {
+				return response()->json([
+						'error' => 'Permission Denied.'
+				], 401);
+			}
+		}
+		public function newreg()
+		{
+			if (Auth::check()) {
+				$query = Reg::orderBy('id', 'desc')->get();
+				$qt = RegFilter::all();
+				return view('admin.reg.new', compact('query', 'qt'));
+			}else {
+				return response()->json([
+						'error' => 'Permission Denied.'
+				], 401);
+			}
+		}
+		public function enroll()
+		{
+			if (Auth::check()) {
+				$query = Enroll::orderBy('id', 'desc')->take(100)->get();
+				return view('admin.enroll.index', compact('query'));
+			}else {
+				return response()->json([
+						'error' => 'Permission Denied.'
+				], 401);
+			}
+		}
+		public function newenroll()
+		{
+			if (Auth::check()) {
+				$query = Enroll::orderBy('id', 'desc')->take(100)->get();
+				return view('admin.enroll.new', compact('query'));
 			}else {
 				return response()->json([
 						'error' => 'Permission Denied.'

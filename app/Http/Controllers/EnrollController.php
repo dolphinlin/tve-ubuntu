@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 use App\Http\Requests;
 use App\Enroll;
+use Auth;
 
 class EnrollController extends Controller
 {
@@ -37,7 +39,22 @@ class EnrollController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      if (Auth::check()) {
+        $v = Validator::make($request->all(),[
+          'title' => 'required',
+          'url' => 'required',
+          'type' => 'required',
+        ]);
+        if ($v->passes()) {
+          Enroll::create($request->all());
+        }
+        return redirect('admin/enroll/new');
+        # code...
+      }else{
+        return response()->json([
+            'error' => 'Permission Denied.'
+        ], 401);
+      }
     }
 
     /**
@@ -48,7 +65,9 @@ class EnrollController extends Controller
      */
     public function show($id)
     {
-        //
+        $q = Enroll::find($id);
+        return response()->json($q, 200, [], JSON_NUMERIC_CHECK);
+
     }
 
     /**
@@ -71,7 +90,15 @@ class EnrollController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      if (Auth::check()) {
+          $f = Enroll::find($id);
+          $f->update($request->all());
+          return redirect('admin/enroll');
+      }else{
+          return response()->json([
+              'error' => 'Permission Denied.'
+          ], 401);
+      }
     }
 
     /**
@@ -82,7 +109,14 @@ class EnrollController extends Controller
      */
     public function destroy($id)
     {
-        //
+      if (Auth::check()) {
+          $$affectedRows = Enroll::where('id', $id)->delete();
+          return redirect('admin/enroll');
+      }else{
+        return response()->json([
+            'error' => 'Permission Denied.'
+        ], 401);
+      }
     }
     public function doctor()
     {

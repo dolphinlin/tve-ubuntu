@@ -15,6 +15,7 @@ app = new Vue(
       title: ''
       url: ''
       type: 0
+    type: ''
   filters:
     subclass: (data, fl) ->
       that = this
@@ -60,60 +61,31 @@ app = new Vue(
       that = this
       that.filterby = id
       if id == 1
-        type = 'doctor'
+        that.type = 'doctor'
       else if id == 2
-        type = 'master'
+        that.type = 'master'
       else if id == 3
-        type = 'nightclass'
+        that.type = 'nightclass'
       else
-        type = 'exam'
+        that.type = 'exam'
       $.ajax(
         method: 'GET'
-        url: '/api/enroll/' + type
+        url: '/api/enroll/' + that.type
         success: (res) ->
           that.pages = res
           that.enrolls = res.data
           console.log 'get success'
       )
-    getFormdata: (id) ->
+    getEnrolldata: (id) ->
       that = this
       $.ajax(
         method: 'GET'
-        url: '/api/formdata/' + id
+        url: '/api/enroll/' + id
         success: (res) ->
-          that.formdata = res
+          that.enroll = res
           $('#ShowForm').modal
             keyboard: false,
         		show: true
           console.log 'get success'
       )
-    deleteFDFilter: (token) ->
-      that = this
-      console.log token
-      $.ajax(
-        method: 'post'
-        url: '/api/formfilter/' + that.ff.id
-        data:
-          _method: 'delete'
-          _token : token
-        success: (msg) ->
-          location.reload()
-      )
-    deleteFD: ->
-      that = this
-      that.$http.delete('/api/formfilter/' + that.ff.id).then(
-        (response) =>
-            console.log 'success'
-            that.$http.get('/api/formdl/filters').then(
-              (res) =>
-                that.fs = res.data
-                that.ff.id = 1
-                console.log res
-              (res) =>
-                alter('Get Error')
-            )
-        (response) =>
-            console.log 'error'
-            alter('Delete Error')
-        )
 )

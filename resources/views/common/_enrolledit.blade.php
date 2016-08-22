@@ -9,33 +9,32 @@
 
       <div class="modal-body">
         <!---->
-        {!! FORM::open(array('url' => '/api/reg/@{{reg.id}}', 'method' => 'put')) !!}
+        {!! FORM::open(array('url' => '/api/enroll/@{{enroll.id}}', 'method' => 'put')) !!}
 
           <fieldset class="form-group">
-            {{ FORM::label('name', '法規') }}
-            <input type="text" name="name" id="name" class="form-control" :value="reg.name">
-          </fieldset>
-
-          <fieldset class="form-group">
-            {{ FORM::label('number', '項目編號') }}
-            <input type="text" name="number" id="number" class="form-control" :value="reg.number" required>
+            {{ FORM::label('title', '標題') }}
+            <input type="text" name="title" id="title" class="form-control" :value="enroll.title">
           </fieldset>
 
           <fieldset class="form-group">
             {{ FORM::label('url', '網址') }}
-            <input type="text" name="url" id="url" class="form-control" :value="reg.url" required>
+            <input type="text" name="url" id="url" class="form-control" :value="enroll.url" required>
           </fieldset>
 
           <fieldset class="form-group">
-            {{ FORM::label('day', '最後修訂日期') }}
-            <input type="date" name="day" id="day" class="form-control" :value="reg.day" required>
-          </fieldset>
-
-          <fieldset class="form-group">
-            <label for="filter">分類</label>
-            <select class="form-control" name="filter" id="filter">
-              <option v-for="t in fs" :value="t.id" :="{'selected' : (t.id == reg.filter)}">
-              @{{ t.title }}
+            <label for="type">分類</label>
+            <select class="form-control" name="type" id="type">
+              <option value="1" :="{'selected' : (enroll.type == 1)}">
+                博士班
+              </option>
+              <option value="2" :="{'selected' : (enroll.type == 2)}">
+                碩士班
+              </option>
+              <option value="3" :="{'selected' : (enroll.type == 3)}">
+                碩士專班
+              </option>
+              <option value="4" :="{'selected' : (enroll.type == 4)}">
+                考試試題
               </option>
             </select>
           </fieldset>

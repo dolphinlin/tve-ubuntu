@@ -108,8 +108,8 @@ class RegController extends Controller
         //
         if (Auth::check()) {
           $q = Reg::find($id);
-          $f->update($request->all());
-          return redirect('admin/reg/new');
+          $q->update($request->all());
+          return redirect('admin/reg');
         }else{
           return response()->json([
               'error' => 'Permission Denied.'
@@ -125,7 +125,14 @@ class RegController extends Controller
      */
     public function destroy($id)
     {
-        //
+      if (Auth::check()) {
+        $q = Reg::find($id)->delete();
+        return redirect('admin/reg');
+      }else{
+        return response()->json([
+            'error' => 'Permission Denied.'
+        ], 401);
+      }
     }
     public function all()
     {

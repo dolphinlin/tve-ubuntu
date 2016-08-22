@@ -58,7 +58,7 @@ app = new Vue(
         method: 'GET'
         url: '/api/reg/' + id
         success: (res) ->
-          that.formdata = res
+          that.reg = res
           $('#ShowForm').modal
             keyboard: false,
         		show: true

@@ -120,7 +120,14 @@ class TeacherController extends Controller
      */
     public function destroy($id)
     {
-        //
+      if (Auth::check()) {
+          $f = Teacher::find($id)->delete();
+          return redirect('admin/tc');
+      }else{
+          return response()->json([
+              'error' => 'Permission Denied.'
+          ], 401);
+      }
     }
 
     public function all()

@@ -106,6 +106,13 @@ class NetresFilterController extends Controller
      */
     public function destroy($id)
     {
-        //
+      if (Auth::check()) {
+        $q = NetresFilter::find($id)->delete();
+        return redirect('admin/res');
+      }else{
+        return response()->json([
+            'error' => 'Permission Denied.'
+        ], 401);
+      }
     }
 }

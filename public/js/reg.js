@@ -78,7 +78,7 @@
           method: 'GET',
           url: '/api/reg/' + id,
           success: function(res) {
-            that.formdata = res;
+            that.reg = res;
             $('#ShowForm').modal({
               keyboard: false
             });

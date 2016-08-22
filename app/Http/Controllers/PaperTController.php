@@ -110,6 +110,13 @@ class PaperTController extends Controller
      */
     public function destroy($id)
     {
-        //
+      if (Auth::check()) {
+        $q = PaperT::find($id)->delete();
+        return redirect('admin/paper');
+      }else{
+        return response()->json([
+            'error' => 'Permission Denied.'
+        ], 401);
+      }
     }
 }

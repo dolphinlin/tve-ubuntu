@@ -35,7 +35,7 @@
 							</fieldset>
 
 							<fieldset class="form-froup">
-								{{ FORM::submit('Submit', array('class' => 'form-control btn btn-success btn-block')) }}
+								{{ FORM::submit('登入', array('class' => 'form-control btn btn-success btn-block')) }}
 							</fieldset>
 
 						{!! FORM::close() !!}

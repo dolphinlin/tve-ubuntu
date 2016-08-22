@@ -34,6 +34,10 @@
       ff: {
         id: 1,
         subclass: ''
+      },
+      calendar: {
+        title: '',
+        url: ''
       }
     },
     filters: {
@@ -102,6 +106,13 @@
         url: '/api/act/all?page=1',
         success: function(res) {
           return that.acts = res.data;
+        }
+      });
+      $.ajax({
+        method: 'GET',
+        url: '/api/pageinfo/calendar',
+        success: function(res) {
+          return that.calendar = res;
         }
       });
       return that.getFilter();

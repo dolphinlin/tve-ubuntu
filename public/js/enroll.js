@@ -19,7 +19,8 @@
         title: '',
         url: '',
         type: 0
-      }
+      },
+      type: ''
     },
     filters: {
       subclass: function(data, fl) {
@@ -75,21 +76,21 @@
     },
     methods: {
       changeData: function(id) {
-        var that, type;
+        var that;
         that = this;
         that.filterby = id;
         if (id === 1) {
-          type = 'doctor';
+          that.type = 'doctor';
         } else if (id === 2) {
-          type = 'master';
+          that.type = 'master';
         } else if (id === 3) {
-          type = 'nightclass';
+          that.type = 'nightclass';
         } else {
-          type = 'exam';
+          that.type = 'exam';
         }
         return $.ajax({
           method: 'GET',
-          url: '/api/enroll/' + type,
+          url: '/api/enroll/' + that.type,
           success: function(res) {
             that.pages = res;
             that.enrolls = res.data;
@@ -97,14 +98,14 @@
           }
         });
       },
-      getFormdata: function(id) {
+      getEnrolldata: function(id) {
         var that;
         that = this;
         return $.ajax({
           method: 'GET',
-          url: '/api/formdata/' + id,
+          url: '/api/enroll/' + id,
           success: function(res) {
-            that.formdata = res;
+            that.enroll = res;
             $('#ShowForm').modal({
               keyboard: false
             });
@@ -114,43 +115,6 @@
             return console.log('get success');
           }
         });
-      },
-      deleteFDFilter: function(token) {
-        var that;
-        that = this;
-        console.log(token);
-        return $.ajax({
-          method: 'post',
-          url: '/api/formfilter/' + that.ff.id,
-          data: {
-            _method: 'delete',
-            _token: token
-          },
-          success: function(msg) {
-            return location.reload();
-          }
-        });
-      },
-      deleteFD: function() {
-        var that;
-        that = this;
-        return that.$http["delete"]('/api/formfilter/' + that.ff.id).then((function(_this) {
-          return function(response) {
-            console.log('success');
-            return that.$http.get('/api/formdl/filters').then(function(res) {
-              that.fs = res.data;
-              that.ff.id = 1;
-              return console.log(res);
-            }, function(res) {
-              return alter('Get Error');
-            });
-          };
-        })(this), (function(_this) {
-          return function(response) {
-            console.log('error');
-            return alter('Delete Error');
-          };
-        })(this));
       }
     }
   });

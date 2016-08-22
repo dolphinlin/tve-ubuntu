@@ -8,5 +8,5 @@ class Reg extends Model
 {
     //
     protected $table = 'regs';
-    protected $fillable = ['name', 'day', 'number', 'filter'];
+    protected $fillable = ['name', 'day', 'number', 'url', 'filter'];
 }
