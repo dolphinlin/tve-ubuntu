@@ -47,6 +47,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         Route::resource('reg', 'RegController');
         Route::resource('regfilter', 'RegFilterController');
         Route::resource('enroll', 'EnrollController');
+
+        Route::post('album', 'AlbumsController@albumCreate');
         //-------------------------------------------------
         Route::group(['prefix' => 'pageinfo'], function(){
           Route::get('calendar', 'PageController@calendar');
@@ -68,8 +70,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
       Route::get('reg/new', 'AdminController@newreg');
       Route::get('enroll', 'AdminController@enroll');
       Route::get('enroll/new', 'AdminController@newenroll');
-
       Route::get('paper/new', 'AdminController@newPaper');
+
+      Route::get('album', 'AlbumsController@newAlbum');
     });
 
 
@@ -107,5 +110,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     Route::get('teacher', function(){
       return View('teacher.index');
     });
+
+    Route::get('test/{id}', 'AlbumsController@test');
+
 
 });
