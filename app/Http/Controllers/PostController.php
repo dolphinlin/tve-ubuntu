@@ -205,6 +205,14 @@ class PostController extends Controller
         //
         if (Auth::check()) {
             $p = Post::where('id', $id)->delete();
+
+            $allFile = Postfiles::where('postid', $id)->get();
+            foreach ($allFile as $f) {
+              File::delete('uploads/annex/' . $f->path);
+            }
+            Postfiles::where('postid', $id)->delete();
+
+            
             return redirect('admin');
         }else{
             return redirect('/');

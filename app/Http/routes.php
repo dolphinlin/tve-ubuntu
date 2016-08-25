@@ -48,7 +48,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         Route::resource('regfilter', 'RegFilterController');
         Route::resource('enroll', 'EnrollController');
 
+        Route::get('album', 'AlbumsController@albumList');
+        Route::get('album/{id}', 'AlbumsController@getAlbum');
         Route::post('album', 'AlbumsController@albumCreate');
+        Route::delete('album/{id}', 'AlbumsController@getDelete');
         //-------------------------------------------------
         Route::group(['prefix' => 'pageinfo'], function(){
           Route::get('calendar', 'PageController@calendar');
@@ -88,6 +91,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     });
     Route::get('enroll', function(){
       return View('enroll.index');
+    });
+    Route::get('album', function(){
+      return View('album.index');
     });
 
     Route::get('login', 'Auth\AuthController@getLogin');

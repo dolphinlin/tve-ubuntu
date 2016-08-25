@@ -13,17 +13,19 @@ use App\Photo;
 
 class AlbumsController extends Controller
 {
-  public function getList()
+  public function albumList()
   {
-    $albums = Album::with('Photos')->get();
-    return View::make('index')
-    ->with('albums',$albums);
+    $albums = Album::all();
+    return response()->json($albums, 200, [], JSON_NUMERIC_CHECK);
   }
   public function getAlbum($id)
   {
-    $album = Album::with('Photos')->find($id);
-    return View::make('album')
-    ->with('album',$album);
+    $album = Album::with('photos')->find($id);
+    $json = array('id' => $album->id, 'title' => $album->title, 'description' => $album->description, 'created_at' => Date($album->created_at), 'photos' => []);
+    foreach ($album->photos as $a) {
+      array_push($json['photos'], ['src' => '/albums/' . $a->image, 'thumb' => '/albums/' . $a->image, 'subHtml' => '']);
+    }
+    return response()->json($json, 200, [], JSON_NUMERIC_CHECK);
   }
   public function getForm()
   {
@@ -83,15 +85,23 @@ class AlbumsController extends Controller
   {
     $album = Album::find($id);
 
+    foreach ($album->photos as $f) {
+      File::delete('albums/' . $f->image);
+    }
+
     $album->delete();
 
-    return Redirect::route('index');
+    return redirect('admin/album');
   }
 
   public function test($id)
   {
-      $album = Album::with('photos')->find($id);
-      return response()->json($album, 200, [], JSON_NUMERIC_CHECK);
+      $album = Album::find($id)->photos;
+      $json = array();
+      foreach ($album as $a) {
+        array_push($json, ['src' => '/albums/' . $a->image, 'thumb' => '/albums/' . $a->image, 'subHtml' => '']);
+      }
+      return $json;
   }
   public function newAlbum()
   {
