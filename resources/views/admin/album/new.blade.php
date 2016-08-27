@@ -30,7 +30,7 @@
           						</fieldset>
 
                       <fieldset class="form-froup">
-                        {!! FORM::file('files[]', array('multiple'=>true)) !!}
+                        {!! FORM::file('files[]', array('multiple'=>true, 'accept' => 'image/*')) !!}
                       </fieldset>
 
                       <p></p>

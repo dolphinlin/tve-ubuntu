@@ -11,6 +11,9 @@ use App\Http\Requests;
 use App\Album;
 use App\Photo;
 
+use Auth;
+use File;
+
 class AlbumsController extends Controller
 {
   public function albumList()
@@ -33,65 +36,86 @@ class AlbumsController extends Controller
   }
   public function albumCreate()
   {
-    $rules = array(
+    if (Auth::check()) {
 
-      'title' => 'required',
-      'description' => 'required',
-      'files' => 'required'
+      $rules = array(
 
-    );
+        'title' => 'required',
+        'description' => 'required',
+        'files' => 'required'
 
-    $validator = Validator::make(Input::all(), $rules);
-    if($validator->fails()){
+      );
 
-      return redirect('admin/album')
-      ->withErrors($validator)
-      ->withInput();
-    }
+      $validator = Validator::make(Input::all(), $rules);
+      if($validator->fails()){
 
-    $files = Input::file('files');
-    $rules = array('file' => 'required'); //'required|mimes:png,gif,jpeg,txt,pdf,doc'
-    if(is_array($files) && !empty($files)){
-      foreach($files as $file) {
-        $validator = Validator::make(array('file'=> $file), $rules);
-        if(!$validator->passes()){
-          return '檔案上傳失敗';
+        return redirect('admin/album')
+        ->withErrors($validator)
+        ->withInput();
+      }
+
+      $files = Input::file('files');
+      $rules = array('file' => 'required'); //'required|mimes:png,gif,jpeg,txt,pdf,doc'
+      if(is_array($files) && !empty($files)){
+        foreach($files as $file) {
+          $validator = Validator::make(array('file'=> $file), $rules);
+          if(!$validator->passes()){
+            return '檔案上傳失敗';
+          }
         }
-      }
-      //Create Album
-      $album = Album::create(array(
-        'title' => Input::get('title'),
-        'description' => Input::get('description'),
-      ));
+        //Create Album
+        $album = Album::create(array(
+          'title' => Input::get('title'),
+          'description' => Input::get('description'),
+        ));
 
-      $count = 0;
-      $rnd = date('YmdHis') . rand(11111,99999) . '_' . $album->id . '_';
-      foreach($files as $file) {
-        $count++;
-        $destinationPath = 'albums/';
-        $filename = $rnd . $count . '.' . $file->getClientOriginalExtension();
-        $upload_success = $file->move($destinationPath, $filename);
-        Photo::create(['album_id' => $album->id, 'image' => $filename ]);
+        $count = 0;
+        $rnd = date('YmdHis') . rand(11111,99999) . '_' . $album->id . '_';
+        foreach($files as $file) {
+          $count++;
+          $destinationPath = 'albums/';
+          $filename = $rnd . $count . '.' . $file->getClientOriginalExtension();
+          $upload_success = $file->move($destinationPath, $filename);
+          Photo::create(['album_id' => $album->id, 'image' => $filename ]);
+        }
+        Session::flash('success', 'Upload successfully');
+      }else{
+        return '檔案上傳失敗';
       }
-      Session::flash('success', 'Upload successfully');
+
+      return redirect('admin/album');
     }else{
-      return '檔案上傳失敗';
+      return redirect('admin');
     }
-
-    return redirect('admin/album');
   }
 
   public function getDelete($id)
   {
-    $album = Album::find($id);
+    if (Auth::check()) {
+      $album = Album::find($id);
 
-    foreach ($album->photos as $f) {
-      File::delete('albums/' . $f->image);
+      foreach ($album->photos as $f) {
+        File::delete('albums/' . $f->image);
+      }
+
+      $album->delete();
+
+      return redirect('admin/album');
+    }else{
+      return redirect('admin');
     }
+  }
 
-    $album->delete();
-
-    return redirect('admin/album');
+  public function albumManage()
+  {
+    if (Auth::check()) {
+      $query = Album::all();
+      return view('admin.album.index', compact('query'));
+    }else {
+      return response()->json([
+          'error' => 'Permission Denied.'
+      ], 401);
+    }
   }
 
   public function test($id)

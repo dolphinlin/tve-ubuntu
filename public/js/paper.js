@@ -140,14 +140,16 @@
       getPage: function(n) {
         var that;
         that = this;
-        return $.ajax({
-          method: 'GET',
-          url: n,
-          success: function(res) {
-            that.pages = res;
-            return that.papers = res.data;
-          }
-        });
+        if (n !== null) {
+          return $.ajax({
+            method: 'GET',
+            url: n,
+            success: function(res) {
+              that.pages = res;
+              return that.papers = res.data;
+            }
+          });
+        }
       }
     }
   });

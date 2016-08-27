@@ -75,7 +75,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
       Route::get('enroll/new', 'AdminController@newenroll');
       Route::get('paper/new', 'AdminController@newPaper');
 
-      Route::get('album', 'AlbumsController@newAlbum');
+      Route::get('album/new', 'AlbumsController@newAlbum');
+      Route::get('album', 'AlbumsController@albumManage');
     });
 
 

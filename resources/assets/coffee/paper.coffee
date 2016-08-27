@@ -98,11 +98,12 @@ app = new Vue(
         )
     getPage: (n) ->
       that = this
-      $.ajax(
-        method: 'GET'
-        url: n
-        success: (res) ->
-          that.pages = res
-          that.papers = res.data
-      )
+      if n != null
+        $.ajax(
+          method: 'GET'
+          url: n
+          success: (res) ->
+            that.pages = res
+            that.papers = res.data
+        )
 )

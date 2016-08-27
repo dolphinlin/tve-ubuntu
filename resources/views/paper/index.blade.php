@@ -49,7 +49,7 @@
       <nav>
         <ul class="pagination">
           <li :class="{ 'disabled' : (pages.prev_page_url == null) }" >
-            <a v-if="pages.prev_page_url != null" href="#" v-on:click="{getPage(pages.prev_page_url) : (pages.prev_page_url != null)}" aria-label="Previous">
+            <a v-if="pages.prev_page_url != null" href="#" v-on:click="getPage(pages.prev_page_url)" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>
             </a>
 
@@ -59,7 +59,7 @@
           </li>
           <li v-for="pg in pages.last_page" :class="{ 'active' : (pages.current_page == $index+1) }" ><a href="#" v-on:click="getPage('/api/paper/all?page=' + (pg + 1))">@{{pg+1}}</a></li>
           <li :class="{ 'disabled' : (pages.next_page_url == null) }" >
-            <a href="#" aria-label="Next">
+            <a href="#" v-on:click="getPage(pages.next_page_url)" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
             </a>
           </li>

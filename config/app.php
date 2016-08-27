@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'locale' => 'tw',
+    'locale' => 'zh-TW',
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'tw',
+    'fallback_locale' => 'zh-TW',
 
     /*
     |--------------------------------------------------------------------------
@@ -162,6 +162,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Unisharp\Ckeditor\ServiceProvider::class,
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
+        Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -211,6 +213,7 @@ return [
         'FORM' => Collective\Html\FormFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class,
         'LaravelLocalization'   => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 
