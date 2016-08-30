@@ -46,3 +46,10 @@ transition-duration: 0.4s;
 	text-align: right;
 	margin-right: 0;
 }
+.fades{
+	opacity: 0.6;
+  transition: opacity 0.15s linear;
+}
+.fades:hover{
+	opacity: 1;
+}

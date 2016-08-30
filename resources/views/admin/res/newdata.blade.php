@@ -29,10 +29,18 @@
           							{{ FORM::text('name', '', array('class' => 'form-control', 'required' => ''))}}
           						</fieldset>
 
+
+                      <label for="url">連結</label>
                       <fieldset class="form-group">
-          							{{ FORM::label('url', '連結') }}
-          							{{ FORM::text('url', '', array('class' => 'form-control', 'required' => ''))}}
-          						</fieldset>
+                          <a id="lfm" data-input="urlInput" data-preview="holder" style="float: right" class="btn btn-primary">
+                            <i class="fa fa-file-o"></i> 瀏覽伺服器
+                          </a>
+                          <div style="overflow: hidden; padding-right: .5em;">
+                             <input class="form-control" id="urlInput" style="width: 100%;" name="url" type="text" required>
+                          </div>​
+                        <img id="holder" style="margin-top:15px;max-height:100px;">
+                      </fieldset>
+
 
 
 
@@ -122,14 +130,15 @@
   <script src="/js/morrisjs/morris.min.js"></script>
 
   <!-- DataTables JavaScript -->
-  <script src="/js/datatables/js/jquery.dataTables.min.js"></script>
-  <script src="/js/datatables-plugins/dataTables.bootstrap.min.js"></script>
-  <script src="/js/datatables-responsive/dataTables.responsive.js"></script>
   <script src="/js/sb-admin-2.min.js"></script>
 	<script src="/js/formdata.js"></script>
+  <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
+
   <script type="text/javascript">
-       $('.deleteForm').on("submit", function(){
+      $('.deleteForm').on("submit", function(){
       return confirm("Do you want to delete this item?");
-  });
+      });
+      $('#lfm').filemanager('file');
   </script>
+
 @stop

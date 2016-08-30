@@ -9,6 +9,11 @@ app = new Vue(
       title: ''
       description: ''
       photos: []
+    pages:
+      current_page: 1
+      last_page: 1
+      next_page_url: ''
+      prev_page_url: ''
 
   filters:
     dateProcess: (date, format) ->
@@ -30,16 +35,10 @@ app = new Vue(
     console.log 'ready read'
     $.ajax(
       method: 'GET'
-      url: '/api/album'
+      url: '/api/album?page=1'
       success: (res) ->
-        that.albums = res
-        console.log 'get success'
-    )
-    $.ajax(
-      method: 'GET'
-      url: '/api/album/6'
-      success: (res) ->
-        that.album = res
+        that.pages = res
+        that.albums = res.data
         console.log 'get success'
     )
   methods:
@@ -55,5 +54,14 @@ app = new Vue(
               dynamic: true,
               dynamicEl: res.photos
           })
+      )
+    getPage: (n) ->
+      that = this
+      $.ajax(
+        method: 'GET'
+        url: '/api/album?page=' + n
+        success: (res) ->
+          that.pages = res
+          that.albums = res.data
       )
 )

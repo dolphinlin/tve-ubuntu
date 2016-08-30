@@ -12,6 +12,12 @@
         title: '',
         description: '',
         photos: []
+      },
+      pages: {
+        current_page: 1,
+        last_page: 1,
+        next_page_url: '',
+        prev_page_url: ''
       }
     },
     filters: {
@@ -38,19 +44,12 @@
       var that;
       that = this;
       console.log('ready read');
-      $.ajax({
-        method: 'GET',
-        url: '/api/album',
-        success: function(res) {
-          that.albums = res;
-          return console.log('get success');
-        }
-      });
       return $.ajax({
         method: 'GET',
-        url: '/api/album/6',
+        url: '/api/album?page=1',
         success: function(res) {
-          that.album = res;
+          that.pages = res;
+          that.albums = res.data;
           return console.log('get success');
         }
       });
@@ -69,6 +68,18 @@
               dynamic: true,
               dynamicEl: res.photos
             });
+          }
+        });
+      },
+      getPage: function(n) {
+        var that;
+        that = this;
+        return $.ajax({
+          method: 'GET',
+          url: '/api/album?page=' + n,
+          success: function(res) {
+            that.pages = res;
+            return that.albums = res.data;
           }
         });
       }

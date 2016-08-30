@@ -5778,4 +5778,11 @@ body {
   text-align: right;
   margin-right: 0; }
 
+.fades {
+  opacity: 0.6;
+  transition: opacity 0.15s linear; }
+
+.fades:hover {
+  opacity: 1; }
+
 /*# sourceMappingURL=app.css.map */

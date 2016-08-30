@@ -18,7 +18,12 @@ class AlbumsController extends Controller
 {
   public function albumList()
   {
-    $albums = Album::all();
+    $albums = Album::paginate(6);
+    foreach ($albums as $arr) {
+      $cover = Photo::select('image')->where('album_id', $arr->id)->first();
+      $arr->cover = $cover->image;
+    }
+
     return response()->json($albums, 200, [], JSON_NUMERIC_CHECK);
   }
   public function getAlbum($id)
@@ -120,12 +125,8 @@ class AlbumsController extends Controller
 
   public function test($id)
   {
-      $album = Album::find($id)->photos;
-      $json = array();
-      foreach ($album as $a) {
-        array_push($json, ['src' => '/albums/' . $a->image, 'thumb' => '/albums/' . $a->image, 'subHtml' => '']);
-      }
-      return $json;
+      $album = Photo::select('image')->where('album_id', $id)->first();
+      return $album;
   }
   public function newAlbum()
   {

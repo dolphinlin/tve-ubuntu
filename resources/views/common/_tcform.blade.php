@@ -76,8 +76,19 @@
 							{{ FORM::text('tecwri', '', array('class' => 'form-control'))}}
 						</fieldset>
 
+            <label for="pic">個人照片</label>
+            <fieldset class="form-group">
+                <a id="lfm" data-input="urlInput" data-preview="holder" style="float: right" class="btn btn-primary">
+                  <i class="fa fa-file-o"></i> 瀏覽伺服器
+                </a>
+                <div style="overflow: hidden; padding-right: .5em;">
+                   <input class="form-control" id="urlInput" style="width: 100%;" name="pic" type="text" required>
+                </div>​
+                <img id="holder" style="margin-top:15px;max-height:100px;">
+            </fieldset>
+
 						<fieldset class="form-froup">
-							{{ FORM::submit('Submit', array('class' => 'form-control btn btn-primary')) }}
+							{{ FORM::submit('送出', array('class' => 'form-control btn btn-primary')) }}
 						</fieldset>
 
 					{!! FORM::close() !!}

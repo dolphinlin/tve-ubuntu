@@ -2,7 +2,7 @@
 
 return [
     // If true, the uploaded file will be renamed to uniqid() + file extension.
-    'rename_file'           => true,
+    'rename_file'           => false,
 
     // If rename_file set to false and this set to true, then filter filename characters which are not alphanumeric.
     'alphanumeric_filename' => true,
@@ -49,6 +49,11 @@ return [
         'image/png',
         'image/gif',
         'application/pdf',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'application/msword',
+        'application/vnd.ms-powerpoint',
+        'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+        'application/zip',
         'text/plain',
     ],
 

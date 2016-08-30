@@ -16,14 +16,20 @@
     <div role="tabpanel" class="tab-pane fade in active" id="home">
       <div class="panel panel-primary">
         <div class="panel-body">
-          <p v-for="a in albums">
-            <a href="#" v-on:click="getAlbum(a.id)" id="dynamic">@{{a.title + a.id}}</a>
-          </p>
+          <div class="col-sm-6 col-md-4" v-for="a in albums">
+            <div class="thumbnail">
+              <a href="#" v-on:click="getAlbum(a.id)" id="dynamic">
+                <img class="fades" :src="'/albums/' + a.cover" :alt="a.description" style="height: 200px; width: auto;">
+              </a>
+              <div class="caption text-center">
+                <h3>@{{a.title}}</h3>
+              </div>
+            </div>
+          </div>
 
         </div>
       </div>
     </div>
-
   </div>
 
 </div>

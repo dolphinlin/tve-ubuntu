@@ -43,6 +43,7 @@
                 <li><a href="netres">{{trans('messages.nav4-2')}}</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="paper">畢業論文</a></li>
+                <li><a href="album">活動剪影</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a :href="calendar.url">行事曆</a></li>
               </ul>
