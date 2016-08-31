@@ -21,6 +21,7 @@ elixir(function(mix) {
   mix.coffee('reg.coffee');
   mix.coffee('enroll.coffee');
   mix.coffee('album.coffee');
+  mix.coffee('page.coffee');
   mix.sass('app.scss')
     .copy(bootstrapPath + '/fonts', 'public/fonts')
     .copy(bootstrapPath + '/javascripts/bootstrap.min.js', 'public/js');

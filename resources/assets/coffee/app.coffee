@@ -28,9 +28,6 @@ app = new Vue(
 		ff:
 			id: 1
 			subclass: ''
-		calendar:
-			title: ''
-			url: ''
 	filters:
 		subclass: ->
 			that = this
@@ -83,12 +80,6 @@ app = new Vue(
 			url: '/api/act/all?page=1'
 			success: (res) ->
 				that.acts = res.data
-			)
-		$.ajax(
-			method: 'GET'
-			url: '/api/pageinfo/calendar'
-			success: (res) ->
-				that.calendar = res
 			)
 		that.getFilter()
 	methods:

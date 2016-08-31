@@ -55,11 +55,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         //-------------------------------------------------
         Route::group(['prefix' => 'pageinfo'], function(){
           Route::get('calendar', 'PageController@calendar');
+          Route::get('carousel', 'PageController@carousel');
         });
     });
 
-
-    Route::group(['prefix' => 'admin'], function(){
+    //check auth before login admin page.
+    Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function(){
       Route::any('', 'PostController@admin');
       Route::get('newpost', 'AdminController@newPost');
       Route::get('tc', 'TeacherController@view');

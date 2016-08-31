@@ -26,6 +26,7 @@
                     </div>
                     <div class="panel-body">
 						{!! FORM::open(array('url' => 'login')) !!}
+							<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 							<fieldset class="form-group">
 								{{ FORM::text('email', '', array('class' => 'form-control', 'placeholder' => 'User', 'autofocus'))}}
 							</fieldset>

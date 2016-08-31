@@ -15,4 +15,9 @@ class PageController extends Controller
         $c = PageInfo::where('title', 'calendar')->first();
         return response()->json($c, 200, [], JSON_NUMERIC_CHECK);
     }
+    public function carousel()
+    {
+      $query = PageInfo::where('title', 'carousel')->get();
+      return response()->json($query, 200, [], JSON_NUMERIC_CHECK);
+    }
 }

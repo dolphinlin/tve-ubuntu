@@ -91,7 +91,7 @@
                 </div>
               </div>
               <div v-if="acts | count">
-                <a v-for="p in 5" href="#" class="ajax_modal" v-on:click="getActiveContent('/post/' + acts[p].id, $event)" >
+                <a v-for="p in acts | count" href="#" class="ajax_modal" v-on:click="getActiveContent('/post/' + acts[p].id, $event)" >
                   <div class="container-fluid postEntry">
                     <div class="col-lg-2 col-xs-4">
                       <span class="label label-info">

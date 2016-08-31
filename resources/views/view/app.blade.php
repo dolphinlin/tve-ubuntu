@@ -27,7 +27,7 @@
               |
               <a href="#">{{trans('messages.link2')}}</a>
               |
-              @if( LaravelLocalization::getCurrentLocale() == 'tw' )
+              @if( LaravelLocalization::getCurrentLocale() == 'zh-TW' )
                 <a href="/en" target="_self">{{trans('messages.link3')}}</a>
               @else
                 <a href="/" target="_self">{{trans('messages.link3')}}</a>
@@ -55,6 +55,8 @@
 
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+<script src="//cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
+<script src="/js/page.js"></script>
 <script src="/js/app.js"></script>
 </body>
 </html>

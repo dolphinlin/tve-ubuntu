@@ -16,6 +16,11 @@ return [
     'nav3' => 'About',
     'nav4' => 'Resource',
     'nav5' => 'Teacher',
+    'nav6' => 'Regulation',
+    'nav7' => 'Recruit',
     'nav4-1' => 'Form Download',
-    'nav4-2' => 'New Resource'
+    'nav4-2' => 'New Resource',
+    'nav4-3' => 'Paper',
+    'nav4-4' => 'Album',
+    'nav4-5' => 'Calendar'
 ];

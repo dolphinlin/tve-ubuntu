@@ -56,6 +56,7 @@
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
 <script src="//cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
+<script src="/js/page.js"></script>
 @yield('js')
 </body>
 </html>
