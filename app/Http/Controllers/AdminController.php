@@ -18,6 +18,7 @@ use App\Teacher;
 use App\Reg;
 use App\RegFilter;
 use App\Enroll;
+use App\PageInfo;
 use Illuminate\Support\Facades\Input;
 
 class AdminController extends Controller
@@ -167,6 +168,11 @@ class AdminController extends Controller
 						'error' => 'Permission Denied.'
 				], 401);
 			}
+		}
+		public function calendar()
+		{
+				$query = PageInfo::where('title', 'calendar')->first();
+				return View('admin.page.calendar', compact('query'));
 		}
 		public function testGet()
 		{

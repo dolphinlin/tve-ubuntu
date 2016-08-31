@@ -32,5 +32,5 @@
     filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
     filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
   });
-</script>
+	</script>
 @stop

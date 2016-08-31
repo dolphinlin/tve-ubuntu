@@ -78,6 +78,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
       Route::get('album/new', 'AlbumsController@newAlbum');
       Route::get('album', 'AlbumsController@albumManage');
+
+      Route::get('calendar', 'AdminController@calendar');
     });
 
 

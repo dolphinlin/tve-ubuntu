@@ -14,8 +14,13 @@ class AdminSeeder extends Seeder
         //
         DB::table('users')->insert([
         	'name' => 'TVE_Admin',
-		    'email' => 'admin',
-		    'password' => bcrypt('tveadmindefault'),
+		      'email' => 'admin001',
+		      'password' => bcrypt('tvedefault'),
         	]);
+        DB::table('users')->insert([
+          'name' => 'TVE_Admin',
+          'email' => 'admin002',
+          'password' => bcrypt('tvedefault'),
+          ]);
     }
 }
