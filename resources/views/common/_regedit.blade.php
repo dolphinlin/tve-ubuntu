@@ -21,9 +21,14 @@
             <input type="text" name="number" id="number" class="form-control" :value="reg.number" required>
           </fieldset>
 
+          <label for="url">連結</label>
           <fieldset class="form-group">
-            {{ FORM::label('url', '網址') }}
-            <input type="text" name="url" id="url" class="form-control" :value="reg.url" required>
+              <a id="lfm" data-input="urlInput" data-preview="holder" style="float: right" class="btn btn-primary">
+                <i class="fa fa-file-o"></i> 瀏覽伺服器
+              </a>
+              <div style="overflow: hidden; padding-right: .5em;">
+                 <input class="form-control" id="urlInput" style="width: 100%;" name="url" type="text" :value="reg.url" required>
+              </div>​
           </fieldset>
 
           <fieldset class="form-group">

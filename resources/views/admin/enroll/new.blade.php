@@ -24,10 +24,15 @@
           							{{ FORM::text('title', '', array('class' => 'form-control', 'required' => ''))}}
           						</fieldset>
 
+                      <label for="url">連結</label>
                       <fieldset class="form-group">
-          							{{ FORM::label('url', '連結') }}
-          							{{ FORM::text('url', '', array('class' => 'form-control', 'required' => ''))}}
-          						</fieldset>
+                          <a id="lfm" data-input="urlInput" data-preview="holder" style="float: right" class="btn btn-primary">
+                            <i class="fa fa-file-o"></i> 瀏覽伺服器
+                          </a>
+                          <div style="overflow: hidden; padding-right: .5em;">
+                             <input class="form-control" id="urlInput" style="width: 100%;" name="url" type="text" required>
+                          </div>​
+                      </fieldset>
 
 
           						<fieldset class="form-group">
@@ -64,5 +69,10 @@
 		<script src="/js/morrisjs/morris.min.js"></script>
 		<script src="/js/sb-admin-2.min.js"></script>
 	  <script src="/js/enroll.js"></script>
+    <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
+
+		<script type="text/javascript">
+				$('#lfm').filemanager('file');
+		</script>
 
 @stop

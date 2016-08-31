@@ -80,13 +80,14 @@
 	<script src="/js/datatables-responsive/dataTables.responsive.js"></script>
 	<script src="/js/sb-admin-2.min.js"></script>
 		<script src="/js/enroll.js"></script>
-
+		<script src="/vendor/laravel-filemanager/js/lfm.js"></script>
     <script>
 	    $(document).ready(function() {
 	        $('#data-table').DataTable({
 	                responsive: true
 	        });
 	    });
+			$('#lfm').filemanager('file');
     </script>
 		<script type="text/javascript">
 				 $('.deleteForm').on("submit", function(){

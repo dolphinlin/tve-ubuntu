@@ -4,10 +4,9 @@
   Vue.http.headers.common['X-CSRF-TOKEN'] = $("#token").attr("value");
 
   app = new Vue({
-    el: '#app',
+    el: '#app2',
     data: {
-      calendar: Object,
-      carousel: []
+      calendar: Object
     },
     ready: function() {
       var that;

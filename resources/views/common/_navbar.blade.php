@@ -4,7 +4,7 @@
     </div>
   </div> --}}
   <div class="container clerfix">
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-default" role="navigation" id="app2">
       <div class="container-fluid">
         <!-- Brand and oggle get grouped for better mobile display -->
         <div class="navbar-header">

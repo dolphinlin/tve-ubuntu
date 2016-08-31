@@ -148,6 +148,18 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        <li>
+                            <a href="#"><i class="fa fa-cog fa-fw"></i>頁面管理<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/album">相簿列表</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/album/new">新增相簿</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                     </ul>
                 </div>
             </div>

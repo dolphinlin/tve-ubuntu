@@ -20,10 +20,15 @@
         {!! FORM::text('name', '@{{formdata.name}}', array('class' => 'form-control'))!!}
       </fieldset>
 
-			<fieldset class="form-group">
-				{{ FORM::label('url', '網址') }}
-				{!! FORM::text('url', '@{{formdata.url}}', array('class' => 'form-control'))!!}
-			</fieldset>
+      <label for="url">連結</label>
+      <fieldset class="form-group">
+          <a id="lfm" data-input="urlInput" data-preview="holder" style="float: right" class="btn btn-primary">
+            <i class="fa fa-file-o"></i> 瀏覽伺服器
+          </a>
+          <div style="overflow: hidden; padding-right: .5em;">
+             <input class="form-control" id="urlInput" style="width: 100%;" name="url" type="text" :value="formdata.url" required>
+          </div>​
+      </fieldset>
 
 			<fieldset class="form-group">
 				<select class="form-control" name="filter" id="filter">

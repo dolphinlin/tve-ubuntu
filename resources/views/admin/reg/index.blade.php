@@ -76,7 +76,14 @@
 	<script src="/js/datatables-responsive/dataTables.responsive.js"></script>
 	<script src="/js/sb-admin-2.min.js"></script>
 		<script src="/js/reg.js"></script>
+		<script src="/vendor/laravel-filemanager/js/lfm.js"></script>
 
+		<script type="text/javascript">
+				$('.deleteForm').on("submit", function(){
+				return confirm("Do you want to delete this item?");
+				});
+				$('#lfm').filemanager('file');
+		</script>
     <script>
 	    $(document).ready(function() {
 	        $('#data-table').DataTable({
@@ -85,9 +92,4 @@
 	        });
 	    });
     </script>
-		<script type="text/javascript">
-				 $('.deleteForm').on("submit", function(){
-				return confirm("Do you want to delete this item?");
-		});
-		</script>
 @stop
