@@ -4,7 +4,6 @@ app = new Vue(
   el: '#app2'
   data:
     calendar: Object
-    carousel: []
   ready: ->
     that = this
     console.log 'ready read'
@@ -14,6 +13,14 @@ app = new Vue(
       (res) =>
         alter('Get Error')
     )
+)
+app3 = new Vue(
+  el: '#app3'
+  data:
+    carousel: []
+  ready: ->
+    that = this
+    console.log 'ready read'
     that.$http.get('/api/pageinfo/carousel').then(
       (res) =>
         that.carousel = res.data

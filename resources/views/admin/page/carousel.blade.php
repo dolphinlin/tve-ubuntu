@@ -4,7 +4,7 @@
   <div id="page-wrapper">
       <div class="row">
           <div class="col-lg-12">
-              <h1 class="page-header">行事曆</h1>
+              <h1 class="page-header">首頁廣告</h1>
           </div>
           <!-- /.col-lg-12 -->
       </div>
@@ -27,25 +27,24 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
                         @if(sizeof($query) == 0)
                           <td>#</td>
                           <td>尚未新增廣告</td>
                           <td></td>
                         @else
                           @foreach($query as $q)
-
+                          <tr>
+                            <td>#</td>
+                            <td>{{$q->title}}</td>
+                            <td>
+                              {!! FORM::open(array('url' => '/api/pageinfo/carousel/'.$q->id , 'method' => 'delete', 'class' => 'deleteForm')) !!}
+                              <a href="#" class="btn btn-xs btn-info" v-on:click.prevent="getPaper({{$q->id}})">編輯</a>
+                              {!! FORM::submit('刪除', ['class' => 'btn btn-xs btn-danger']) !!}
+                              {!! FORM::close() !!}
+                            </td>
+                          </tr>
                           @endforeach
-                          <td>#</td>
-                          <td>{{$q->title}}</td>
-                          <td>
-                            {!! FORM::open(array('url' => '/api/pageinfo/carousel/'.$q->id , 'method' => 'delete', 'class' => 'deleteForm')) !!}
-      									        <a href="#" class="btn btn-xs btn-info" v-on:click.prevent="getPaper({{$q->id}})">編輯</a>
-      									        {!! FORM::submit('刪除', ['class' => 'btn btn-xs btn-danger']) !!}
-      											{!! FORM::close() !!}
-                          </td>
                         @endif
-                      </tr>
                     </tbody>
                   </table>
                 </div>
