@@ -23,7 +23,7 @@
                       <tr>
                         <th width="10%">#</th>
                         <th width="40%">標題</th>
-                        <th>圖片</th>
+                        <th>操作</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -38,7 +38,12 @@
                           @endforeach
                           <td>#</td>
                           <td>{{$q->title}}</td>
-                          <td>{{$q->url}}</td>
+                          <td>
+                            {!! FORM::open(array('url' => '/api/pageinfo/carousel/'.$q->id , 'method' => 'delete', 'class' => 'deleteForm')) !!}
+      									        <a href="#" class="btn btn-xs btn-info" v-on:click.prevent="getPaper({{$q->id}})">編輯</a>
+      									        {!! FORM::submit('刪除', ['class' => 'btn btn-xs btn-danger']) !!}
+      											{!! FORM::close() !!}
+                          </td>
                         @endif
                       </tr>
                     </tbody>
@@ -55,7 +60,7 @@
                   <!-- /.panel-heading -->
                   <div class="panel-body">
           					{!! FORM::open(array('url' => '/api/pageinfo/carousel')) !!}
-                      <label for="url">連結</label>
+                      <label for="url">連結（圖片大小 1200*316）</label>
                       <fieldset class="form-group">
                           <a id="lfm" data-input="urlInput" data-preview="holder" style="float: right" class="btn btn-primary">
                             <i class="fa fa-file-o"></i> 瀏覽伺服器

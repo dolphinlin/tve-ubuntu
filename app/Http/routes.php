@@ -59,6 +59,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
           Route::get('carousel', 'PageController@carousel');
           Route::post('carousel', 'PageController@carouselCreate');
+          Route::delete('carousel/{id}', 'PageController@carouselDelete');
 
 
         });

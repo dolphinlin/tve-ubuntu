@@ -57,4 +57,15 @@ class PageController extends Controller
         ], 401);
       }
     }
+    public function carouselDelete($id)
+    {
+      if (Auth::check()) {
+          $affectedRows = PageInfo::find($id)->delete();
+          return redirect('admin/carousel');
+      }else{
+        return response()->json([
+            'error' => 'Permission Denied.'
+        ], 401);
+      }
+    }
 }
