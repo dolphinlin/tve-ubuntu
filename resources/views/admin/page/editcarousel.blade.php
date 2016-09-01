@@ -4,53 +4,13 @@
   <div id="page-wrapper">
       <div class="row">
           <div class="col-lg-12">
-              <h1 class="page-header">首頁廣告</h1>
+              <h1 class="page-header">首頁廣告 - 編輯 - {{$carouselData->title}}</h1>
           </div>
           <!-- /.col-lg-12 -->
       </div>
 
       <!-- /.row -->
       <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <i class="fa fa-list-alt fa-fw"></i>廣告
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                  <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th width="10%">#</th>
-                        <th width="40%">標題</th>
-                        <th>操作</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        @if(sizeof($query) == 0)
-                          <td>#</td>
-                          <td>尚未新增廣告</td>
-                          <td></td>
-                        @else
-                          @foreach($query as $q)
-                          <tr>
-                            <td>#</td>
-                            <td>{{$q->title}}</td>
-                            <td>
-                              {!! FORM::open(array('url' => '/api/pageinfo/carousel/'.$q->id , 'method' => 'delete', 'class' => 'deleteForm')) !!}
-                              <a href="/admin/carousel/{{$q->id}}/edit" class="btn btn-xs btn-info">編輯</a>
-                              {!! FORM::submit('刪除', ['class' => 'btn btn-xs btn-danger']) !!}
-                              {!! FORM::close() !!}
-                            </td>
-                          </tr>
-                          @endforeach
-                        @endif
-                    </tbody>
-                  </table>
-                </div>
-                <!-- /.panel-body -->
-            </div>
-      </div>
           <div class="col-lg-12">
               <div class="panel panel-success">
                   <div class="panel-heading">
@@ -58,14 +18,14 @@
                   </div>
                   <!-- /.panel-heading -->
                   <div class="panel-body">
-          					{!! FORM::open(array('url' => '/api/pageinfo/carousel')) !!}
+          					{!! FORM::open(array('url' => '/api/pageinfo/carousel/' . $carouselData->id, 'method' => 'put')) !!}
                       <label for="url">連結（圖片大小 1200*316）</label>
                       <fieldset class="form-group">
                           <a id="lfm" data-input="urlInput" data-preview="holder" style="float: right" class="btn btn-primary">
                             <i class="fa fa-file-o"></i> 瀏覽伺服器
                           </a>
                           <div style="overflow: hidden; padding-right: .5em;">
-                             <input class="form-control" id="urlInput" style="width: 100%;" name="url" type="text"required>
+                             <input class="form-control" id="urlInput" style="width: 100%;" name="url" type="text" value="{{$carouselData->url}}" required>
                           </div>​
                       </fieldset>
 

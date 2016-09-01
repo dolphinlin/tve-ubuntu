@@ -60,6 +60,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
           Route::get('carousel', 'PageController@carousel');
           Route::post('carousel', 'PageController@carouselCreate');
           Route::delete('carousel/{id}', 'PageController@carouselDelete');
+          Route::put('carousel/{id}', 'PageController@carouselUpdate');
 
 
         });
@@ -87,6 +88,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
       Route::get('calendar', 'AdminController@calendar');
       Route::get('carousel', 'AdminController@carousel');
+      Route::get('carousel/{id}/edit', 'PageController@carouselEdit');
     });
 
 

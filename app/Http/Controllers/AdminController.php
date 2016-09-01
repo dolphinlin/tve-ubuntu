@@ -177,7 +177,8 @@ class AdminController extends Controller
 		public function carousel()
 		{
 				$query = PageInfo::where('type', 'carousel')->get();
-				return View('admin.page.carousel', compact('query'));
+				$carouselData = new PageInfo;
+				return View('admin.page.carousel', compact('query', 'carouselData'));
 		}
 		public function testGet()
 		{

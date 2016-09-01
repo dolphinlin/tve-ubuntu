@@ -68,4 +68,26 @@ class PageController extends Controller
         ], 401);
       }
     }
+    public function carouselUpdate(Request $request ,$id)
+    {
+      if (Auth::check()) {
+          PageInfo::find($id)->update($request->all());
+          return redirect('admin/carousel');
+      }else{
+        return response()->json([
+            'error' => 'Permission Denied.'
+        ], 401);
+      }
+    }
+    public function carouselEdit($id)
+    {
+      if (Auth::check()) {
+          $carouselData = PageInfo::find($id);
+          return View('admin.page.editcarousel', compact('carouselData'));
+      }else{
+        return response()->json([
+            'error' => 'Permission Denied.'
+        ], 401);
+      }
+    }
 }
