@@ -18,7 +18,7 @@
                   </div>
                   <!-- /.panel-heading -->
                   <div class="panel-body">
-          					{!! FORM::open(array('url' => '/api/reg')) !!}
+          					{!! FORM::open(array('url' => '/api/pageinfo/calendar')) !!}
                       <label for="url">連結</label>
                       <fieldset class="form-group">
                           <a id="lfm" data-input="urlInput" data-preview="holder" style="float: right" class="btn btn-primary">
@@ -30,7 +30,7 @@
                       </fieldset>
 
           						<fieldset class="form-froup">
-          							{{ FORM::submit('送出', array('class' => 'form-control btn btn-primary')) }}
+          							{{ FORM::submit('更新', array('class' => 'form-control btn btn-primary')) }}
           						</fieldset>
 
           					{!! FORM::close() !!}

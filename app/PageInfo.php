@@ -8,5 +8,5 @@ class PageInfo extends Model
 {
     //
     protected $table = 'page_infos';
-    protected $fillable = ['title', 'url'];
+    protected $fillable = ['title', 'url', 'type'];
 }

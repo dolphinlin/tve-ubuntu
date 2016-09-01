@@ -11,24 +11,66 @@
 
       <!-- /.row -->
       <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-list-alt fa-fw"></i>廣告
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th width="10%">#</th>
+                        <th width="40%">標題</th>
+                        <th>圖片</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        @if(sizeof($query) == 0)
+                          <td>#</td>
+                          <td>尚未新增廣告</td>
+                          <td></td>
+                        @else
+                          @foreach($query as $q)
+
+                          @endforeach
+                          <td>#</td>
+                          <td>{{$q->title}}</td>
+                          <td>{{$q->url}}</td>
+                        @endif
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+      </div>
           <div class="col-lg-12">
               <div class="panel panel-success">
                   <div class="panel-heading">
-                      <i class="fa fa-list-alt fa-fw"></i>行事曆
+                      <i class="fa fa-list-alt fa-fw"></i>廣告
                   </div>
                   <!-- /.panel-heading -->
                   <div class="panel-body">
-          					{!! FORM::open(array('url' => '/api/reg')) !!}
+          					{!! FORM::open(array('url' => '/api/pageinfo/carousel')) !!}
                       <label for="url">連結</label>
                       <fieldset class="form-group">
                           <a id="lfm" data-input="urlInput" data-preview="holder" style="float: right" class="btn btn-primary">
                             <i class="fa fa-file-o"></i> 瀏覽伺服器
                           </a>
                           <div style="overflow: hidden; padding-right: .5em;">
-                             <input class="form-control" id="urlInput" style="width: 100%;" name="url" type="text" value="{{$query->url}}" required>
+                             <input class="form-control" id="urlInput" style="width: 100%;" name="url" type="text"required>
                           </div>​
                       </fieldset>
 
+                      <fieldset class="form-froup">
+                        {{ FORM::label('title', '標題') }}
+          							{{ FORM::text('title', '', array('class' => 'form-control')) }}
+          						</fieldset>
+
+                      <p></p>
           						<fieldset class="form-froup">
           							{{ FORM::submit('送出', array('class' => 'form-control btn btn-primary')) }}
           						</fieldset>
@@ -37,7 +79,7 @@
                   </div>
                   <!-- /.panel-body -->
               </div>
-      </div>
+        </div>
       </div>
       <!-- /.row -->
   </div>
@@ -55,6 +97,6 @@
 
     <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
     <script type="text/javascript">
-        $('#lfm').filemanager('file');
+        $('#lfm').filemanager('image');
     </script>
 @stop

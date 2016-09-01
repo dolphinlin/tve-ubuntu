@@ -171,8 +171,13 @@ class AdminController extends Controller
 		}
 		public function calendar()
 		{
-				$query = PageInfo::where('title', 'calendar')->first();
+				$query = PageInfo::where('type', 'calendar')->first();
 				return View('admin.page.calendar', compact('query'));
+		}
+		public function carousel()
+		{
+				$query = PageInfo::where('type', 'carousel')->get();
+				return View('admin.page.carousel', compact('query'));
 		}
 		public function testGet()
 		{

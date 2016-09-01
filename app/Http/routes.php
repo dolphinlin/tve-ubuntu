@@ -55,7 +55,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         //-------------------------------------------------
         Route::group(['prefix' => 'pageinfo'], function(){
           Route::get('calendar', 'PageController@calendar');
+          Route::post('calendar', 'PageController@calendarUpdate');
+
           Route::get('carousel', 'PageController@carousel');
+          Route::post('carousel', 'PageController@carouselCreate');
+
+
         });
     });
 
@@ -80,6 +85,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
       Route::get('album', 'AlbumsController@albumManage');
 
       Route::get('calendar', 'AdminController@calendar');
+      Route::get('carousel', 'AdminController@carousel');
     });
 
 

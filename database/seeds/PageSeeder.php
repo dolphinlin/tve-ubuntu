@@ -14,6 +14,7 @@ class PageSeeder extends Seeder
         DB::table('page_infos')->insert([
             'title' => 'calendar',
             'url' => '',
+            'type' => 'calendar',
             ]);
     }
 }
